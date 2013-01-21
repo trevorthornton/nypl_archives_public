@@ -1,0 +1,38 @@
+<h1>Edit OrgUnit</h1>
+
+<div id="org_units_new" class="standalone_container">
+  <%= form_for(@org_unit, :url => {:action => 'update', :id => @org_unit.id}, :html => {:id => 'org_unit_form', :class => 'org_unit_form admin_form', :method => 'put'}) do |f| %>
+
+  <div>
+    <label for="org_unit_name">Name:</label><br/>
+    <%= f.text_field(:name, :size => 100) %>
+  </div>
+
+  <div>
+    <label for="org_unit_name_short">Short name (for use in select lists, etc. - leave blank to use same name as above):</label><br/>
+    <%= f.text_field(:name_short, :size => 100) %>
+  </div>
+  
+  <div>
+    <label for="org_unit_nypl_unit">NYPL location:</label><br/>
+    <%= f.select(:center, library_center_select_options(), :include_blank => true) %>
+  </div>
+  
+  <div>
+    <label for="org_unit_code">NYPL unit code:</label><br/>
+    <%= f.text_field(:code, :size => 10) %>
+  </div>
+
+  <div>
+    <label for="org_unit_code">MARC Organization Code:</label><br/>
+    <%= f.text_field(:marc_org_code, :size => 10) %>
+    <p>Use values from <%=link_to('MARC Code List for Organizations','http://www.loc.gov/marc/organizations/',:target => '_blank') %>
+  </div>
+  
+  <div>
+    <%= submit_tag("Save") %>
+    <%= cancel_button.html_safe %>
+  </div>
+
+  <% end %>
+</div>

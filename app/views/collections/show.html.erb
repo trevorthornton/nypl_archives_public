@@ -1,0 +1,26 @@
+<h1><%= @collection.title %></h1>
+
+<dl class="dl-horizontal">
+  <dt>id</dt>
+  <dd><%= @collection.id %></dd>
+  
+  <dt>org unit</dt>
+  <dd><%= @collection.org_unit.name %></dd>
+  
+  <dt>date/time ingested</dt>
+  <dd><%= @collection.created_at.to_s %></dd>
+  
+  <dt>total components</dt>
+  <dd><%= @collection.num_components %></dd>
+  
+  <dt>total series</dt>
+  <dd><%= @collection.num_series %></dd>
+  
+  <dt>max levels of description</dt>
+  <dd><%= @collection.max_component_level %></dd> 
+</dl>
+
+<div class="actions">
+  <h2 class="actions">Actions</h2>
+  <%= link_to 'Add/update related collections', "/collection_associations/#{@collection.id}/edit", :class => 'btn' %>
+</div>

@@ -1,0 +1,35 @@
+<h1>Collections</h1>
+
+<%= will_paginate @collections, :renderer => BootstrapPaginationHelper::LinkRenderer %>
+
+<table class="table">
+  
+  <thead>
+    <tr>
+      <th>collection title</th>
+      <th>id</th>
+      <th>org unit</th>
+      <th>total components</th>
+      <th>total series</th>
+      <th>max levels</th>
+      <th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    
+    <% @collections.each do |c| %>
+      <tr class="<%= c.active ? 'active' : 'inactive' %>">
+        <td><%= link_to c.title, "collections/#{c.id}" %></td>
+        <td><%= c.id.to_s %></td>
+        <td><%= c.org_unit.code %></td>
+        <td><%= c.num_components %></td>
+        <td><%= c.num_series %></td>
+        <td><%= c.max_component_level %></td>
+        <td><%= activation_link(c).html_safe %></td>
+      </tr>
+    <% end %>
+    
+  </tbody>
+  
+</table>  
