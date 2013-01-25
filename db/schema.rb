@@ -106,17 +106,6 @@ ActiveRecord::Schema.define(:version => 20130108160537) do
     t.datetime "updated_at",    :null => false
   end
 
-  create_table "nypl_repo_objects", :force => true do |t|
-    t.string   "uuid"
-    t.string   "object_type"
-    t.integer  "total_captures"
-    t.text     "capture_ids",      :limit => 2147483647
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.integer  "describable_id"
-    t.string   "describable_type"
-  end
-
   create_table "org_units", :force => true do |t|
     t.string   "name"
     t.string   "name_short"
