@@ -1,0 +1,54 @@
+<div class="search-results">
+  <h1 class="results-info">
+    <% if @prefilter == 'org_unit_code' && @org_unit %>
+      Collections in <%= @org_unit.name %>
+    <% elsif @index_term %>
+  	  Found <%= pluralize @response["response"]["numFound"].to_i, "collection" %> relating to <strong><%= @index_term %></strong>
+  	<% elsif @q %>
+  	  Found <%= pluralize @response["response"]["numFound"].to_i, "result" %> for <strong><%= params[:q] %></strong>
+  	<% else %>
+  	  Found <%= pluralize @response["response"]["numFound"].to_i, "result" %>
+  	<% end %>
+  		<% if !@facet_list.empty? %>
+  		<span class="subtitle active_filters">Filters: 
+  		  <%= @facet_list.join(' | ') %>
+  		</span>
+  	<% end %>
+  </h1>
+
+
+  <%= render :partial => "common/pagination" %>
+  
+  
+  <table class="table search-results-table table-hover">
+  
+  <thead>
+    <tr>
+      <th class="collection-id">id</th>
+      <th>org unit</th>
+      <th class='title'>title</th>
+      <th class='origination'>origination</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    
+    <% @response["response"]["docs"].each do |doc| %>
+
+  	  <tr>
+        <td class="collection-id"><%= link_to doc['id'].to_s, "collections/#{doc['id']}" %></td>
+        <td><%= doc['org_unit_code'] %></td>
+        <td><%= link_to doc['title'], "collections/#{doc['id']}" %></td>
+        <td><%= doc['origination'] ? doc['origination'].join(';') : '' %></td>
+      </tr>
+  	  
+  	<% end %>
+    
+  </tbody>
+  
+</table>
+
+
+  <%= render :partial => "common/pagination" %>
+
+</div>

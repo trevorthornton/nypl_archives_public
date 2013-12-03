@@ -1,0 +1,52 @@
+@import "variables";
+@import "mixins";
+
+body.general-home {
+  .content.main-content {
+     margin: 0;
+     padding: 60px 0 40px 0;
+     background: url(<%= asset_path 'home_bkg.png' %>) no-repeat top left;
+     width: 100%;
+     height: 380px;
+   }
+   
+   #footer {
+     margin-top : 0;
+   }
+   
+   
+   .home {
+     .home-content {
+       background: $greenLight;
+       border: 2px solid $gray;
+       padding: 10px;
+       width: 400px;
+       margin-left: 40px;
+       opacity: 0.9;
+       filter: alpha(opacity=90);
+        
+       h1 {
+         font-family: $heavyFontFamily;
+         text-transform: uppercase;
+       }
+
+       form.search {
+         input[type="text"] {
+           padding: $paddingSmall;
+           font-size: $baseFontSize * 1.25;
+           line-height: $baseLineHeight * 1.25;
+         }
+         button {
+           line-height: $baseLineHeight * 1.8;
+           height: $baseLineHeight + $paddingSmall * 2 - $componentBorderWidth;
+         }
+       }
+     }
+     
+     .site-sponsor {
+       margin: 20px 0 0 40px;
+       font-style: italic;
+     }
+   }
+
+}

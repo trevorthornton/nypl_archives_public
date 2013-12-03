@@ -1,0 +1,19 @@
+<% object_type = @record.class.to_s.downcase %>
+<%= form_for @record do |f| %>
+  
+  <div>    
+    <label><strong>Boost queries (separate each term with a comma):</strong></label>
+    <p>This record will return as the first search result for the term(s) provided<br/>
+      (unless multiple records have the same boost query, in which case preference
+      will be given based on natural relevancy ranking)</p>
+      
+    <%= text_field_tag "#{object_type}[boost_queries]", @boost_queries.join(', '), :width => 100 %>
+    
+  </div>
+  
+  <div class="offset4">
+    <%= f.submit 'Save', :class => 'btn btn-primary' %>
+    <%= f.submit 'Cancel', :cancel => true, :class => 'btn' %>
+  </div>
+
+<% end %>

@@ -1,0 +1,61 @@
+<%= form_for @document, :html => {:multipart => true, :class => 'form-horizontal'} do |f| %>
+  
+  <%= f.hidden_field :describable_id %>
+  <%= f.hidden_field :describable_type %>
+  
+  <div class="control-group">
+    <%= f.label :document_type, :class => 'control-label'  %>
+    <div class="controls">
+      <%= f.select :document_type, document_type_select_options %>
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <%= f.label :index_only, :class => 'control-label'  %>
+    <div class="controls">
+      <%= f.check_box :index_only %>
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'input-xlarge' %>
+    </div>
+  </div>
+  
+  
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label'  %>
+    <div class="controls">
+      <%= f.text_area :description, :rows => 5 %>
+    </div>
+  </div>
+  
+  
+  <% if params[:action] == 'edit' %>
+    <div>
+      <label>Current file:</label>
+      <%= link_to @document.file, @document.file_url %>  
+    </div>
+  <% end %>
+  
+  
+  <div>    
+    <% if params[:action] == 'edit' %>
+      <label>Select new file:</label>
+    <% end %>
+    <%= f.file_field :file %>
+  </div>
+  
+  
+  <div class="offset4">
+    <% if params[:action] == 'new' %>
+      <%= f.submit 'Upload file', :class => 'btn btn-primary' %>
+    <% elsif params[:action] == 'edit' %>
+      <%= f.submit 'Save changes', :class => 'btn btn-primary' %>
+    <% end %>
+    <%= f.submit 'Cancel', :class => 'btn' %>
+  </div>
+  
+<% end %>

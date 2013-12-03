@@ -1,0 +1,24 @@
+<script src="<%= asset_path('contact_form.js') %>"></script>
+
+<div class="contact-form-container<%= @layout == false ? ' no-layout' : '' %>">
+
+  <% if @show_choice %>
+  <div id="form-select">
+    <h1>What would you like to do?</h1>
+    <div><a href="" class="contact-form-choice btn btn-large" data-choice="question">Ask a question</a></div>
+    <div><a href="" class="contact-form-choice btn btn-large" data-choice="request">Request access to <%= @collection ? @collection.title : "materials" %></a></div>
+  </div>
+  <% end %>
+
+  <% if @show_choice %>
+  <div id="form-choice-container">
+    <%= render :partial => 'form', :locals => { :fieldsets => fieldsets(:default), :mode => 'question' }  %>
+    <%= render :partial => 'form', :locals => { :fieldsets => fieldsets(@org_unit_code), :mode => 'request' }  %>
+  </div>
+  <% elsif @mode == 'feedback' %>
+    <%= render :partial => 'form', :locals => { :fieldsets => feedback_fields, :mode => 'feedback' } %>
+  <% else %>
+    <%= render :partial => 'form', :locals => { :fieldsets => fieldsets(@org_unit_code), :mode => @mode }  %>
+  <% end %>
+
+</div>

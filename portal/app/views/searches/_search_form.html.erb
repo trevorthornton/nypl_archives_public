@@ -1,0 +1,19 @@
+<% nav_search ||= nil %>
+<% placeholder = 'Search names, titles, keywords...' %>
+<%
+if @exclude_collection_ids
+  search_url = {:controller => 'searches', :action => 'results', :exclude_collection_ids => @exclude_collection_ids}
+else
+  search_url = "/search/results"
+end
+%>
+<%= form_tag(search_url, {:class => nav_search ? 'search navbar-search' : 'search', :method => 'get'}) do %>
+    <div class="controls search-input no-print">
+    <%= text_field_tag "q", @q || "",
+      { :placeholder => placeholder } %>
+    <button type="search" class="button"></button>
+    
+    </div>
+    
+<% end %>
+

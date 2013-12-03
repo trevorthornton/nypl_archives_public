@@ -1,0 +1,202 @@
+// Place all the styles related to the searches controller here.
+// They will automatically be included in application.css.
+
+@import "variables";
+@import "mixins";
+
+.search-results {
+  
+  margin-top: $baseFontSize * 2;
+  
+  h1.results-info {
+    font-family: $baseFontFamily;
+  }
+  
+  .search-term {
+    font-weight: bold;
+    font-size: 120%;
+  }
+  
+  .active-filters {
+    margin: ($baseFontSize * 1.5) 0 $baseFontSize 0;
+    padding: 5px;
+    background: $grayLightest;
+  }
+
+  .search-result {
+    padding: 0 5px $baseFontSize .7em;
+    margin-bottom: $baseFontSize;
+    
+  	border-bottom: 1px solid $grayLight;
+    
+    &:last-child {
+      border-bottom: 0;
+    }
+    
+  	&.collection {
+  	}
+
+  	&.collection:last-child {
+  		border-bottom: none;
+  	}
+
+  	.descriptor {
+  		text-transform: uppercase;
+  		font-size: 10px;
+  		line-height: 10px;
+  	}
+
+  	.component-path {
+  		font-size: $baseFontSize * 0.9;
+  		color: $lightTextColor;
+  	}
+  	
+    a {
+      color: $blue;
+      &:hover, &:active {
+        color: $blueBright;
+      }
+    }
+    
+    .origination {
+    }
+    
+    .title {
+      font-size: $baseFontSize * 1.2;
+    }
+    
+    span.title {
+      font-size: inherit;
+    }
+    
+    .date {
+    }
+    
+    .abstract {
+      color:  $lightTextColor;
+      line-height: $baseFontSize * 1.25;
+      margin-top: $baseFontSize * 0.25;
+    }
+    
+    .component-results {
+      h3 {
+       font-family: $baseFontFamily;
+       font-size: $baseFontSize * 0.9;
+       margin-bottom: $baseFontSize / 3;
+       color: $lightTextColor;
+      }
+      .collection-search-link {
+        margin-top: $baseFontSize / 2;
+      }
+    }
+
+    .has-digital-content-icon-holder{
+      display:inline-block;
+      width: $baseFontSize * 1.4;
+      height: $baseFontSize * 1.4;
+      position: absolute;
+    }
+
+    .has-digital-content-icon:before{
+      content: 'D';
+      color: $lightTextColor;
+      font-family: "Icomoon";
+      font-size: $baseFontSize * 1.3;
+      line-height: $baseFontSize * 1.3;
+      position: absolute;
+      padding-left: $baseFontSize/2;
+
+    }
+
+
+  }
+}
+
+
+.facet-filter {
+  
+  margin-top: $baseFontSize * 2.5;
+    
+  .facet {
+    margin-bottom: $baseFontSize * 1.5;
+  }
+  
+  .facet-name {
+    @include heading ('h3');
+    font-size: $baseFontSize * 0.75;
+    margin-bottom: $baseFontSize * 0.1;
+    // padding-left: $baseFontSize * 0.25;
+    line-height: $baseFontSize;
+    letter-spacing: 0.01;
+    color: $lightTextColor;
+  }
+  
+  .facet-value-select {
+    height: $baseFontSize * 6;
+    padding: $baseFontSize * 0.25;
+    overflow: auto;
+    border: 1px solid $grayLighter;
+    
+    &.noscroll {
+      height: auto;
+      padding: 0;
+      border: 0;
+    }
+    
+    ul {
+     li {
+       line-height: $baseFontSize;
+       margin-bottom: $baseFontSize / 3;
+     }
+      
+    }
+  }
+  
+  .active-facet {
+  }
+  
+  .filter-reset {
+    margin-top: $baseFontSize;
+  }
+    
+}
+
+.has-digital-content-legend{
+  position: absolute;
+  // text-align: center;
+  border: solid 1px #d0cdc8;
+  top: 140px;
+  right: 10px;
+  color: $lightTextColor;
+  font-style: italic;
+  padding: 5px 10px 5px ($baseFontSize * 2);
+  line-height: $baseFontSize * 1.15;
+  .has-digital-content-icon:before{
+    content: 'D';
+    font-size: $baseFontSize * 1.25;
+    font-style: normal;
+    color: $lightTextColor;
+    font-family: "Icomoon";
+    display: inline-block;
+    width: $baseFontSize * 1.25;
+    position: absolute;
+    left: 10px;
+    top: 12px;
+  }
+
+}
+
+form.facets select {
+  width: 100%;
+}
+
+.search-hint {
+  font-size: $baseFontSize * 0.7;
+  color: $grayDark;
+  margin: -10px 0 0 0;
+  font-style: italic;
+}
+
+.navbar .search-hint {
+  text-align: right;
+}

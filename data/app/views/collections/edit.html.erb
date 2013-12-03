@@ -1,0 +1,18 @@
+<div class="collections collections-edit">
+  
+  <% case @update_type %>
+  <% when 'pdf_finding_aid' %>
+  
+    <%= render :partial => 'form_pdf_finding_aid' %>
+
+  <% when 'bnumber_call_number' %>
+    
+    <%= render :partial => 'form_bnumber_call_number' %>
+  
+  <% when'boost_queries' %>
+    
+    <%= render :partial => 'common/form_boost_queries' %>
+    
+  <% end %>
+  
+</div>

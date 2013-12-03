@@ -1,0 +1,14 @@
+<h1>Edit Division/Unit info</h1>
+
+<div id="org_units_new" class="standalone_container">
+  <%= form_for(@org_unit, :html => {:id => 'org_unit_form', :class => 'org_unit_form admin_form'}) do |f| %>
+
+  <%= render :partial => 'form_fields', :locals => { :f => f } %>
+  
+  <div>
+    <%= submit_tag("Save") %>
+    <%= cancel_button.html_safe %>
+  </div>
+
+  <% end %>
+</div>

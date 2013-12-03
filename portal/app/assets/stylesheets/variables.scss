@@ -1,0 +1,52 @@
+/* Overrides to DRR bootsrtap styles */
+
+@import "drr/drr-variables";
+
+// VARIABLES (fonts, colors, etc) GO HERE
+
+$mainfont: $mainFontFamily;
+$iconfont: $iconFontFamily;
+
+// Base variables moved to drr/drr-variables
+$textColor: $grayDarkest;
+$maincolor: $textColor;
+$highlightcolor: $linkColor;
+$activehighlightcolor: $linkColorHover;
+$dimhighlightcolor: $grayLightest;
+$debugcolor: rgba(0, 255, 0, 0.2);
+
+
+// Local variables/resets:
+
+$textFontFamily:        "Myriad Pro", "Lucida Grande", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+$boldFontFamily:        "Lato Bold", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+
+$drrBaseFontSize:       $baseFontSize;
+$baseFontSize:          14px;
+$h1FontSize:            24px;
+$h2FontSize:            18px;
+$h3FontSize:            16px;
+$h4FontSize:            14px;
+$h5FontSize:            14px;
+$h6FontSize:            14px;
+$baseLineHeight:        21px;
+$headingsLetterSpacing: $baseLetterSpacing;
+$headingsFontFamily:    $boldFontFamily;
+
+$inputPadding:               $paddingMini;
+
+// More colors
+$gray:                  $gray;
+$blueBright:            #14A8E7;
+$lightTextColor:        $gray;
+$grayGhost:             #f8f8f8;
+$bodyBackground:        $grayGhost;
+
+// More fonts
+$monoFontFamily:        Courier;
+
+$nyplHeaderheight:      40px;
+$navbar_min_height:     115px;
+
+// collection navbar height = navbar + heading container padding + h1 lineheight + h1 margin + h1 subtitle lineheight + collection buttons
+$collection_navbar_height: $navbar_min_height + ($baseFontSize * 3) + ($baseFontSize * 1.4) + 20px + ($baseFontSize * 1.4) + 25px;

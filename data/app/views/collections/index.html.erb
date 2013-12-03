@@ -1,0 +1,39 @@
+
+<div class="collections-header">  
+  <div><h1>Collections</h1></div>
+  <div><a class="btn btn-success" href="/collections/new">Add Collections</a></div>
+</div>
+
+<%= will_paginate @collections, :renderer => BootstrapPaginationHelper::LinkRenderer %>
+
+<table class="table collections-table table-hover">
+  
+  <thead>
+    <tr>
+      <th class="collection-id">id</th>
+      <th class='date-added<%= @sort == 'created_at' ? " selected" : '' %>'><%= @sort == 'created_at' ? 'date added' : link_to('date added', 'collections?sort=created_at') %></th>
+      <th>org unit</th>
+      <th class='title<%= @sort == 'title' ? " selected" : '' %>'><%= @sort == 'title' ? 'title' : link_to('title', 'collections?sort=title') %></th>
+      <th class='origination<%= @sort == 'origination' ? " selected" : '' %>'><%= @sort == 'origination' ? 'origination' : link_to('origination', 'collections?sort=origination') %></th>
+      <th>components</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    
+    <% @collections.each do |c| %>
+      <tr class="<%= c.active ? 'active' : 'inactive' %>">
+        <td class="collection-id"><%= link_to c.id.to_s, "collections/#{c.id}" %></td>
+        <td class="date-added"><%= c.created_at.strftime('%Y-%m-%d') %></td>
+        <td><%= c.org_unit.code %></td>
+        <td><%= link_to c.title, "collections/#{c.id}" %></td>
+        <td><%= c.origination || '' %></td>
+        <td><%= c.num_components %></td>
+      </tr>
+    <% end %>
+    
+  </tbody>
+  
+</table>
+
+<%= will_paginate @collections, :renderer => BootstrapPaginationHelper::LinkRenderer %>

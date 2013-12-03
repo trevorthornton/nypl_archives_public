@@ -1,0 +1,37 @@
+<h1>
+  <span property="schema:name"><%= @collection.title %></span>
+  <% if @collection.date_statement %>
+    <span class="subtitle" property="schema:dateCreated"><%= @collection.date_statement %></span>
+  <% end %>
+</h1>
+
+<div class="collection-view-select no-print">
+  <a href="#overview" class="btn<%= params[:action] == 'show' ? ' primary disabled' : '' %>">Overview</a>
+  
+  <% if !@collection.components.empty? %>
+    <a href="#detailed" class="btn<%= params[:action] == 'container_list' ? ' primary disabled' : '' %>">Detailed description</a>
+  <% end %>
+  
+  <% if !@collection.pdf_finding_aid.blank? %>
+    <a href="<%= @collection.persistent_path %>/pdf" rel="nofollow" class="btn">Printable (PDF) version</a>
+
+  <% else %>
+
+    <% #if !@collection.components.empty? %>
+
+      <a href="<%= @collection.persistent_path %>/pdf" rel="nofollow" class="btn">Printable (PDF) version</a>
+
+    <% #end %>
+
+  <% end %>
+  
+  <%= link_to "Contact the division", contact_path(:layout => false, :collection_id => @collection.id,
+   :org_unit_id => @collection.org_unit.id), :class => 'btn contact-link' %>
+</div>
+
+<div id="nav-title-holder" class='visible-desktop'>
+  <div id="fixed-nav-title"></div>
+  <div id="fixed-nav-title-tooltip" class="title-tooltip"><i class="icon-info-sign"></i></div>
+  <div id="fixed-nav-subtitle"></div>
+  <div id="fixed-nav-subtitle-tooltip" class="title-tooltip"><i class="icon-info-sign"></i></div>
+</div>

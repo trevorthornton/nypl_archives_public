@@ -1,0 +1,21 @@
+@import "variables";
+@import "drr/drr-variables";
+@import "drr/drr-mixins";
+
+// Mixins
+
+@mixin heading-margin {
+  margin: ($baseFontSize * 1.5) 0 $baseFontSize 0;
+}
+
+@mixin heading ($tag: "h1") {
+  @include drr-heading;
+  @include heading-margin;
+  @if ($tag == "h3") {
+    margin: ($baseFontSize / 2) 0 ($baseFontSize / 4) 0;
+  }
+}
+
+@mixin paragraph {
+  margin: 0 0 $baseLineHeight / 2;
+}

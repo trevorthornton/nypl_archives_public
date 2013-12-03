@@ -1,0 +1,122 @@
+@import "variables";
+@import "mixins";
+
+// media declarations
+// See bootsrtap_and_overrides for main overrides to responsive Bootstrap
+@media (min-width: 981px) {
+  body {
+    padding-top: 100px;
+  }
+  body.collections-show {
+    padding-top: $collection_navbar_height;
+  }
+}
+
+
+@media (max-width: 979px) {
+  .span3 .collection-info-sidenav {
+    position: static;
+    width: auto;
+    top: 0;
+  }
+  
+  .navbar-fixed-top {
+    margin-bottom: 0;
+    
+    .navbar-inner {
+      padding: 0;
+    }
+  }
+
+  /*
+  .collection-head .content-col {
+    //MM: took this out 9/18/13
+    //width: 99%;
+  }
+  */
+  
+  .collection-head .collection-view-select {
+    .btn {
+      font-size: $smallFontSize * 0.95;
+      line-height: $smallFontSize * 0.95;
+      background-image: none;
+      margin-top: 0;
+      padding: ($smallFontSize * 0.5) ($smallFontSize * 0.6);
+    }
+  }
+  
+}
+
+
+// Responsive fixed for small viewports
+@media (max-width: 767px) {
+  .collection-info-sidenav {
+    display: none;
+  }
+  
+  .collection-head .collection-view-select {
+    .btn {
+      font-size: $smallFontSize * 0.9;
+      line-height: $smallFontSize * 0.9;
+      background-image: none;
+      margin-top: 0;
+      padding: ($smallFontSize * 0.5) ($smallFontSize * 0.6);
+    }
+  }
+  
+  .home .home-content {
+    background: none;
+    border: none;
+    padding: 0;
+    width: 90%;
+  }
+  
+  .collection-info-content .tab-pane {
+    display: block !important;
+    &.fade {
+      opacity: 100;
+    }
+    
+    h2 {
+      margin: $h2FontSize 0 !important;
+    }
+    
+    .description-section .collection-summary {
+      background: 0;
+      padding: 0;
+      border: 0;
+    }
+  }
+
+}
+
+@media (max-height: 200px) {
+  body {
+    padding: 0;
+  }
+  
+  .collection-info-sidenav {
+    display: none;
+  }
+  
+  .span3 .collection-info-sidenav {
+    position: relative;
+    top: 0;
+  }
+  .navbar-fixed-top, .navbar-fixed-bottom {
+    position: static;
+  }
+}
+
+@media print
+
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+
+    body{
+      padding: 0 !important;
+    }
+}

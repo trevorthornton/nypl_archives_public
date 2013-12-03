@@ -1,0 +1,32 @@
+<div id="description" class="show-section">
+  
+  <h2>Description data <a href="#" class="top-link">TOP</a></h2>
+
+  <dl class="dl-horizontal">
+  
+    <% @description.each do |k,v| %>
+      <% if !['dates_index'].include?(k) %>
+      <dt><%= k %></dt>
+      <dd>
+        <% if v.class == Array%>
+          <% v.each do |value| %>
+            <div>
+            <% if value.class == Hash %>
+              <%= value.inspect %>
+            <% else %>
+              <%= value %>
+            <% end %>
+            </div>
+          <% end %>
+        <% else %>
+          <div><%= v %></div>
+        <% end %>
+      </dd>
+      <% end %>
+    <% end %>
+
+  </dl>
+  
+  
+  
+</div>

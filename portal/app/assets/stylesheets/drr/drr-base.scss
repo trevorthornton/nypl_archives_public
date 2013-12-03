@@ -1,0 +1,158 @@
+/*
+ * DRR-Bootstrap
+ * Source: https://github.com/NYPL/drr-bootstrap
+ * Author: NYPL Labs
+ * Description: Base front-end framework for NYPL Digital Reading Room (DRR) Sites to extend.
+ */
+
+@import "variables";
+@import "drr/drr-mixins";
+
+// Body reset
+// -------------------------
+// moved to layout
+
+// Links
+// -------------------------
+// moved to layout
+
+
+// Body text
+// -------------------------
+
+p.lead {
+  font-size: $leadFontSize;
+  line-height: $largeLineHeight;
+  letter-spacing: $largeLetterSpacing;
+}
+small {
+  font-size: $smallFontSize;
+  line-height: $smallLineHeight;
+}
+
+// Headings
+// -------------------------
+// Heading styles moved to layout
+
+.page-header {
+  padding: 0;
+  margin: ($baseLineHeight / 2) 0;
+  border-bottom: $componentBorder;
+}
+
+// Forms
+// -------------------------
+form {
+  margin: 0 0 $baseLineHeight;
+}
+
+select,
+textarea,
+input[type="text"],
+input[type="password"] {
+  display: inline-block;
+  height: $baseLineHeight;
+  padding: $inputPadding;
+  margin-bottom: $baseLineHeight / 2;
+  font-size: $baseFontSize;
+  line-height: $baseLineHeight;
+  color: $inputColor;
+  vertical-align: middle;
+  width: $inputWidth;
+  background: $inputBackgroundColor;
+  border: $componentBorder;
+  &:focus {
+    border: $componentBorderHighlight;
+    outline: 0;
+    outline: thin dotted \9; /* IE6-9 */
+  }
+}
+[type="submit"] {
+  cursor: pointer;
+  color: $linkColor;
+  &:hover {
+    color: $linkColorHover;
+  }
+}
+.search-input{
+  @include drr-search-box();
+}
+
+// Messaging
+// -------------------------
+.alert {
+  @include drr-alert();
+}
+.alert.info {
+  background: $componentInfoBackground;
+}
+.alert.success {
+  background: $componentSuccessBackground;
+}
+.alert.danger {
+  background: $componentDangerBackground;
+}
+
+// Icons
+// -------------------------
+[data-icon]:before,
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  @include drr-icon();
+}
+[data-icon]:before {
+  content: attr(data-icon);
+}
+.icon-multiple:before { content: "m";}
+.icon-ascending:before { content: "a";}
+.icon-descending:before { content: "d";}
+.icon-left:before { content: "l";}
+.icon-right:before { content: "r";}
+.icon-play:before { content: "v";}
+.icon-alert:before { content: "c";}
+.icon-favorite:before { content: "f";}
+.icon-share:before { content: "s";}
+.icon-code:before { content: "e";}
+.icon-lock:before { content: "k";}
+.icon-buy:before { content: "1";}
+.icon-print:before { content: "p";}
+.icon-rotate-right:before { content: "9";}
+.icon-rotate-left:before { content: "6";}
+.icon-delete:before { content: "x";}
+.icon-zoom-out:before { content: "-";}
+.icon-zoom-in:before { content: "+";}
+.icon-book:before { content: "b";}
+.icon-triangle-right:before { content: ">";}
+.icon-triangle-down:before { content: "V";}
+.icon-tag:before { content: "!";}
+.icon-video:before { content: '"';}
+.icon-video-play:before { content: "#";}
+.icon-video-pause:before { content: "$";}
+.icon-mute:before { content: "&";}
+.icon-volume:before { content: "%";}
+.icon-save:before { content: "'";}
+.icon-first:before { content: "(";}
+.icon-edit:before { content: ")";}
+.icon-trash:before { content: "/";}
+.icon-cog:before { content: ".";}
+.icon-user:before { content: "0";}
+.icon-eye:before { content: "2";}
+.icon-search:before { content: "o"; }
+
+// Fonts
+// -------------------------
+@font-face {
+  @include font-face('Lato Regular', $fontPath, 'lato-reg-webfont');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  @include font-face('Lato Black', $fontPath, 'lato-bla-webfont');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  @include font-face($iconFontFamily, $fontPath, 'icomoon');
+  font-weight: normal;
+  font-style: normal;
+}

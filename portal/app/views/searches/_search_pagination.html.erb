@@ -1,0 +1,28 @@
+<% @p = @pagination_details %>
+<% prev_page = @page == 1 ? nil : (@page - 1) %>
+<% next_page = @page < @p[:total_pages] ? (@page + 1) : nil %>
+
+<div class='pagination-wrapper'>
+ 
+  <div class='pagination'>
+
+    <% if prev_page %>
+    <form action="<%= url_for(@pagination_details[:href]) %>" method="post">
+      <input type="hidden" name="page" value ="<%= prev_page %>"/>
+      <%= render :partial => "search_pagination_hidden_fields", :locals => { :prev_next => 'prev' } %>
+      <button type="submit" class="btn btn-small" />Previous page</button>
+    </form>
+    <% end %>
+    
+    <div class='pagination-summary'>Page <%= @page.to_s %> of <%= @p[:total_pages].to_s %></div>
+    
+    <% if next_page %>
+    <form action="<%= url_for(@pagination_details[:href]) %>" method="post">
+      <input type="hidden" name="page" value ="<%= next_page %>"/>
+      <%= render :partial => "search_pagination_hidden_fields", :locals => { :prev_next => 'next' }%>
+      <button type="submit" class="btn btn-small" />Next page</button>
+    </form>
+    <% end %>
+  
+  </div>
+</div>

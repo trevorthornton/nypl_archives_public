@@ -1,0 +1,3 @@
+module CollectionAssociationsHelper
+  include ApplicationHelper
+end

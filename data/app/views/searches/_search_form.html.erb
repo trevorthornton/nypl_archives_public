@@ -1,0 +1,12 @@
+<% nav_search ||= nil %>
+<% placeholder = nav_search ? 'Search' : @q %>
+<%= form_tag("/search/results", {:class => nav_search ? 'navbar-search' : 'form-search'}) do %>
+  <div class="input-append">
+    <%= text_field_tag "q", @q || "",
+      { :id => "frm-query", :placeholder => placeholder, :class => "search-query" } %>
+    <% if !nav_search %>
+      <%= submit_tag "Search",  :class => "btn btn-search", :name => nil, :onclick => "" %>
+    <% end %>
+  </div>
+<% end %>
+

@@ -1,0 +1,58 @@
+<div class="search-result <%= doc['type'] %><%= doc['digital_assets'] ? ' has-digital-content' : '' %>"> 
+
+  <% if doc['type'] == 'component' %>
+    <div class="component-path"><%= component_path(doc).html_safe %></div>
+  <% end %>
+  
+  <% if doc['origination'] %>
+  <div class="origination"><%= doc['origination'].join(';').html_safe %></div>
+  <% end %>
+  
+  <div class="title">
+    <% link_text = doc['date_statement'] ? "#{doc['title']}, #{doc['date_statement']}" : doc['title'] %>
+    <% if doc['type'] == 'component' %>
+      <%= link_to link_text, persistent_component_path(doc), { :class => 'result-link' } %>
+    <% else %>
+      <%= link_to link_text, persistent_collection_path(doc.symbolize_keys), { :class => 'result-link' } %>
+    <% end %>
+
+    <% if doc['digital_assets'] %>
+      <div class="has-digital-content-icon-holder" title="Portions of this collection have been digitized and are available online.">
+      <span class="has-digital-content-icon"></span>
+    </div>
+    <% end %>
+
+  </div>
+  
+  <% if doc['type'] == 'collection' %>
+    <div class="location">
+      <%= location_string(doc).html_safe %>
+    </div>
+  <% end %>
+  
+  <% if doc['extent_statement'] %>
+  <div class="extent">
+    <%= doc['extent_statement'].html_safe %>
+  </div>
+  <% end %>
+  
+  <% if doc['abstract'] && doc['abstract'][0] %>
+  <div class="abstract truncate">
+    <% truncate_length = 250 %>
+    <div class="truncate-text truncate-short"><%= truncate(doc['abstract'][0], :length => truncate_length, :separator => ' ').html_safe %>
+    <% if doc['abstract'][0].length > truncate_length %>
+      <a href="#" class="truncate-link truncate-more btn btn-mini">more</a>
+      </div>
+      <div class="truncate-text truncate-long hidden">
+        <%= doc['abstract'][0].html_safe %>
+        <a href="#" class="truncate-link truncate-less btn btn-mini">less</a>
+      </div>
+    <% else %>
+      </div>
+    <% end %>
+  </div>
+  <% end %>
+  
+  <%= component_results(doc).html_safe %>
+  
+</div>

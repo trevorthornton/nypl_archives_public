@@ -1,0 +1,179 @@
+@import "twitter/bootstrap/bootstrap";
+body { 
+	padding-top: 60px;
+}
+
+@import "twitter/bootstrap/responsive";
+
+// Set the correct sprite paths
+@iconSpritePath: "../../glyphicons-halflings.png";
+@iconWhiteSpritePath: "../../glyphicons-halflings-white.png";
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+// Note: If you use asset_path() here, your compiled boostrap_and_overrides.css will not 
+//       have the proper paths. So for now we use the absolute path.
+// @fontAwesomeEotPath: '/assets/fontawesome-webfont.eot';
+// @fontAwesomeWoffPath: '/assets/fontawesome-webfont.woff';
+// @fontAwesomeTtfPath: '/assets/fontawesome-webfont.ttf';
+// @fontAwesomeSvgPath: '/assets/fontawesome-webfont.svg';
+// @fontAwesomeEotPath_iefix: asset-path("fontawesome-webfont.eot#iefix");
+
+// Font Awesome
+// @import "fontawesome";
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/less.html for their names and documentation
+//
+// Example:
+// @linkColor: #ff0000;
+
+@lightTextColor: #666;
+
+body {
+  
+  padding: 60px 0;
+  
+  h1 {
+    font-size: @baseFontSize * 2;
+    margin-bottom: @baseFontSize;
+    .sub {
+      display: block;
+      margin: 0;
+      padding: 0;
+      font-size: @baseFontSize * 1.2;
+      line-height: @baseFontSize * 1.2;
+    }
+  }
+  
+  h2, h3, h4, h5, h5 {
+    color: @lightTextColor;
+    
+    .top-link {
+      font-size: @baseFontSize;
+      padding: 0 @baseFontSize;
+      font-weight: normal;
+    }
+  }
+  
+  h2 {
+    font-size: @baseFontSize * 1.5;
+    line-height: @baseFontSize * 1.7;
+    margin-bottom: @baseFontSize * 0.5;
+  }
+
+  h3 {
+    font-size: @baseFontSize * 1.25;
+    line-height: @baseFontSize * 1.4;
+    margin-bottom: @baseFontSize * 0.5;
+  }
+
+  h4, h5, h6 {
+    font-size: @baseFontSize;
+    line-height: @baseFontSize * 1.2;
+    margin-bottom: @baseFontSize * 0.5;
+  }
+
+}
+
+table {
+    
+  &.attachments-table {
+    font-size: @baseFontSize * 0.85;
+  }
+  
+}
+
+.well {
+  dl {
+    margin: 0;
+  }
+}
+
+.navbar .brand {
+  margin-left: 0;
+}
+
+.hidden {
+	display: none;
+}
+
+
+
+textarea {
+  width: 400px;
+}
+
+
+.search-results {
+  .search-result {
+    
+    margin-bottom: @baseFontSize * 2;
+    
+    .title {
+      font-size: @baseFontSize * 1.2;
+    }
+    
+    .date {
+    }
+    
+    .abstract {
+      line-height: @baseFontSize * 1.25;
+      margin-top: @baseFontSize * 0.25;
+    }
+  }
+}
+
+.navbar-search {
+  position: absolute;
+  float: none;
+  top: 0;
+  right: 10px;
+}
+
+.pagination {
+  margin: 0;
+}
+
+
+.pagination_wrapper {
+  margin: @baseFontSize 0;
+}
+
+form {
+  div {
+    margin-bottom: @baseFontSize;
+  }
+}
+
+input[type="radio"], input[type="checkbox"] {
+  margin-top: 0;
+}
+
+.show-section {
+  padding: 30px 0;
+  border-bottom: 1px solid @lightTextColor;
+  
+  h2 {
+    text-transform: uppercase;
+    line-height: 1em;
+  }
+  
+  .subsection {
+    margin: (@baseFontSize * 2) 0;
+  }
+}
+
+#cboxContent {
+  h1 {
+    font-size: @baseFontSize * 1.5;
+  }
+}
+
+.inline {
+  display: inline;
+}

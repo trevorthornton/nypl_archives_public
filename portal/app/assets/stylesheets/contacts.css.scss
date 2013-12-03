@@ -1,0 +1,146 @@
+// Place all the styles related to the contacts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "variables";
+
+.contact-form-container {
+  
+  background: $bodyBackground;
+  padding: $baseFontSize; 
+  
+  .form-required-key {
+    font-size: 90%;
+    color: $gray;
+  }
+  
+  input[type='text'], textarea {
+    width: 500px;
+  }
+  
+  .radio.radio-group-label {
+    padding-left: 0;
+  }
+  
+  div {
+    margin: 0 0 ($baseFontSize / 2);
+    
+    select, input[type="text"], textarea, label {
+      margin-bottom: 0;
+    }
+    
+    .contact-success {
+      margin: 150px auto 0 auto;
+      padding: $baseFontSize * 2;
+      background: $grayLightest;
+      width: 350px;
+      border: 2px solid $grayDark;
+      display: none;
+      h1 {
+        margin-bottom: $h1FontSize;
+      }
+    }
+
+    .contact-success-static{
+
+      display: none;
+      min-height: 500px;
+
+      ul{
+        margin-left: 20px;
+      }
+
+    }
+    
+  }
+  
+  
+  
+  .name-fields {
+    position: relative;
+    overflow: hidden;
+    display: inline-block; /* Necessary to trigger "hasLayout" in IE */
+    display: block; /* Sets element back to block */
+    div {
+      width: 260px;
+      float: left;
+      input {
+        width: 240px;
+      }
+    }
+  }
+  
+  .state-zip-fields {
+    position: relative;
+    overflow: hidden;
+    display: inline-block; /* Necessary to trigger "hasLayout" in IE */
+    display: block; /* Sets element back to block */
+    div {
+      float: left;
+      &.state {
+       width: 320px;
+      }
+      &.zip {
+        width: 150px;
+      }
+    }
+    input#state {
+      width: 300px;
+    }
+    input#zip {
+      width: 150px;
+    }
+  }
+  
+  
+  .terms-fields {
+    
+    margin: $baseFontSize 0;
+    
+    ol, ul {
+      list-style: default;
+      margin: 0;
+      padding: 0;
+      margin-left: $baseFontSize;
+      
+      li {
+        margin: 0 0 $baseFontSize / 2;
+      }
+    }
+    label.accept-text {
+      display: inline;
+      font-size: $baseFontSize * 0.85;
+    }
+    .access-rules {
+      padding: $baseFontSize;
+      max-height: 100px;
+      overflow: auto;
+      font-size: $baseFontSize * 0.85;
+      color: $gray;
+      border: 1px solid $grayLight;
+      margin: 0 0 $baseFontSize 0;
+      background-color: $white;
+    }
+  }
+  
+  #form-select {
+    padding: 150px 0;
+    text-align: center;
+    line-height: $h2FontSize * 2;
+    h1 {
+      margin-bottom: $h1FontSize;
+    }
+    div {
+      margin-bottom: $h1FontSize;
+    }
+  }
+  
+  #form-choice-container {
+    .form-wrapper {
+      display: none;
+    }
+  }
+
+}
+
+  

@@ -1,0 +1,59 @@
+<%
+@p = @pagination_details
+href = @p[:href]
+
+puts href.inspect
+
+labels = { :previous_page => ' ← ', :next_page => ' → ' }
+
+if @p[:total_pages] > 1
+
+  pagination = "<div class='pagination-wrapper'>\n"
+    
+    pagination += "<div class='pagination-summary'>Page #{@p[:current_page]} of #{@p[:total_pages]}</div>"
+
+      if @p[:total_pages] > 1
+        pagination += "<div class='pagination'>\n"
+          pagination += "<ul>\n"
+
+  
+          if @p[:prev_page]
+            prev_href = href.clone
+            prev_href[:page] = @pagination_details[:prev_page]
+            pagination += "<li>" + link_to(labels[:previous_page], prev_href) + "</li>"
+          else
+            pagination += "<li class='disabled'><span>" + labels[:previous_page] + "</span></li>\n"
+          end
+
+
+          (@p[:first_visible_page]..@p[:last_visible_page]).to_a.each do |n|
+            page_href = href.clone
+            page_href[:page] = n
+  
+            if n == @p[:current_page]
+              pagination += "<li class='active'><span>" + n.to_s + "</span></li>\n"
+            else
+              pagination += "<li>" + link_to(n.to_s,page_href) + "</li>\n"
+            end
+          end
+  
+  
+          if @p[:next_page]
+            next_href = href.clone
+            next_href[:page] = @p[:next_page]
+            pagination += "<li>" + link_to(labels[:next_page], next_href) + "</li>\n"
+          else
+            pagination += "<li class='disabled'><span>" + labels[:next_page] + "</span></li>\n"
+          end
+  
+  
+          pagination += "</ul>\n"
+        pagination += "</div>\n"
+      end
+  
+  pagination += "</div>\n"
+    
+  %>
+  <%= pagination.html_safe %>
+  
+<% end %>

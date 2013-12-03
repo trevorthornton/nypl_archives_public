@@ -1,0 +1,50 @@
+<% @description_sections = generate_description_sections %>
+<div class="row collection-info">
+  
+  <div class="span3 sidebar">
+    
+    <ul class="nav nav-tabs nav-stacked collection-info-sidenav affix" id="navTab">
+      
+      <% @description_sections.each do |k,v| %>
+        <li class="<%= k == 'descriptive_identity' ? 'active' : '' %>">
+          <a href="#<%= k %>" data-toggle="tab"><%= description_section_labels(k) %></a>
+        </li>
+      <% end %>
+    </ul>
+    
+  </div>
+  
+  <div class="span9 collection-info-content">
+    
+    
+    <div id="navTabContent" class="tab-content">
+      <% @description_sections.each do |k,v| %>
+        <div class="tab-pane fade<%= k == 'descriptive_identity' ? ' in active' : '' %>" id="<%= k %>">
+          <%= v.html_safe %>
+        </div>
+      <% end %>
+    </div> 
+    
+    
+      <div class="development-only">
+        <span class="dev-label">DEVELOPMENT ONLY</span>
+        <%= link_to "view in data.archives", "http://dev.data.archives.nypl.org/collections/#{@collection.id}",
+          {:target => '_blank', :class => 'btn btn-mini'} %>
+        <a href="#" class="btn btn-mini" data-toggle="collapse" data-target="#demo">show raw data</a>
+      
+        <div id="demo" class="collapse">
+          <div class="test-output well">        
+            <dl class="dl">
+              <% @collection_data.each do |k,v| %>
+              <dt><%= k %></dt>
+              <dd><%= v.inspect %></dd>
+              <% end %>
+            </dl>
+          </div>
+        </div>
+      </div>
+      
+  </div>  
+  
+
+</div>

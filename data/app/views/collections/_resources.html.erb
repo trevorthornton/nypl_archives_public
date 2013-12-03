@@ -1,0 +1,24 @@
+<div id="resources" class="file-attachments show-section">
+  
+  <h2>Resources <a href="#" class="top-link">TOP</a></h2>
+  
+    <h3>PDF finding aid</h3>
+    <div>
+            
+      <% if !@collection.pdf_finding_aid.blank? %>
+        <label>Current PDF finding aid:</label>
+        <%= link_to @collection.pdf_finding_aid, @collection.pdf_finding_aid_url %>
+        <% button_label = "Replace/remove PDF" %>
+      <% else %>
+        <p class="empty-label">No PDF finding aid attached.</p>
+        <% button_label = "Upload PDF" %>
+      <% end %>
+      
+      <%= link_to button_label, edit_collection_path(:id => @collection.id, :layout => false, :update_type => 'pdf_finding_aid'),
+          :class => 'btn btn-mini', :data => {:colorbox => true } %>
+    </div>
+  
+    <%= render :partial => 'common/attachments', :locals => { :record => record } %>
+    <%= render :partial => 'common/links', :locals => { :record => record } %>
+  
+</div>

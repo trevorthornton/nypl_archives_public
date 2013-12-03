@@ -1,0 +1,42 @@
+<div id="links" class="links show-subsection">
+  
+  <h3>Links to external resources</h3>
+
+  <% if !@external_resources.blank? %>
+    <table class="table links-table attachments-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>URL</th>
+          <th>Resource type</th>
+          <th>Description</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @external_resources.each do |r| %>
+          <tr>
+            <td><%= r.title ? r.title : '--' %></td>
+            <td><%= link_to r.url, r.url %></td>
+            <td><%= r.resource_type ? r.resource_type : '--' %></td>
+            <td><%= r.description ? r.description : '--' %></td>
+            <td>
+
+              <%= link_to("Delete", r, :method => :delete, :class => 'btn btn-mini pull-right') %>
+                           
+              <%= link_to 'Edit', edit_external_resource_path(:id => r.id, :layout => false), :class => 'btn btn-mini pull-right', :data => {:colorbox => true } %>
+            
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="empty-label">No links associated with this <%= record.class.to_s.downcase %>.</p>
+  <% end %>
+  
+  <div>
+    <%= link_to "Add an external link", new_external_resource_path(:describable_type => record.class.to_s, :describable_id => record.id, :layout => false), :class => 'btn btn-small', :data => {:colorbox => true } %>
+  </div>
+  
+</div>

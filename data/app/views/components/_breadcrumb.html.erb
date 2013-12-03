@@ -1,0 +1,12 @@
+<ul class="breadcrumb">
+  <li>
+    <%= link_to @collection.title, "/collections/#{@collection.id}" %>
+    <span class="divider">/</span></li>
+  <% if !@component_ancestors.blank? %>
+    <% @component_ancestors.each do |c| %>
+      <li><%= link_to c.title, "/components/#{c.id}" %>
+      <span class="divider">/</span></li>
+    <% end %>
+  <% end %>
+  <li><%= @component.title %></li>
+</div>

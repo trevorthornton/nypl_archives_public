@@ -1,0 +1,15 @@
+<div class="search-result <%= doc['type'] %>"> 
+
+  <% if doc['origination'] %>
+  <div class="origination"><%= doc['origination'].join(';') %></div>
+  <% end %>
+  
+  <div class="title">
+  <%= link_to doc['title'], "/collections/#{doc['id']}", { :class => 'result-link' } %>
+  </div>
+
+  <% if doc['date_statement'] %>
+  <div class="date"><%= doc['date_statement'] %></div>
+  <% end %>
+    
+</div>

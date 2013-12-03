@@ -1,0 +1,21 @@
+<h1>Add PDF finding aid to <%= @collection.title %></h1>
+
+<%= form_for @collection, :html => {:multipart => true, :class => 'form-horizontal'} do |f| %>
+
+  <div>    
+    <label>Upload new PDF finding aid:</label>
+    <%= f.file_field :pdf_finding_aid %>
+  
+    <div>
+      <%= f.check_box :remove_pdf_finding_aid %>
+      Remove PDF finding aid
+    </div>
+
+  </div>
+
+  <div class="offset4">
+    <%= f.submit 'Save', :class => 'btn btn-primary' %>
+    <%= f.submit 'Cancel', :class => 'btn' %>
+  </div>
+
+<% end %>

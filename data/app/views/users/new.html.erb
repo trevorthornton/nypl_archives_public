@@ -1,0 +1,9 @@
+<h1>Add User</h1>
+
+<div id="users_new" class="standalone_container">
+  <%= form_for(@user, :url => {:action => 'create'}, :html => { :class => 'user_form admin_form form-horizontal'} ) do |f| %>
+  
+  <%= render :partial => 'form_fields' %>
+
+  <% end %>
+</div>

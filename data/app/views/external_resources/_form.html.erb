@@ -1,0 +1,48 @@
+<%= form_for @external_resource, :html => {:multipart => true, :class => 'form-horizontal'} do |f| %>
+  
+  <%= f.hidden_field :describable_id %>
+  <%= f.hidden_field :describable_type %>
+  
+  <div class="control-group">
+    <%= f.label :resource_type, :class => 'control-label'  %>
+    <div class="controls">
+      <%= f.select :resource_type, resource_type_select_options %>
+    </div>
+  </div>
+  
+  
+  <div class="control-group">
+    <%= f.label :url, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :url, :class => 'input-xlarge' %>
+    </div>
+  </div>
+  
+  
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'input-xlarge' %>
+    </div>
+  </div>
+  
+  
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label'  %>
+    <div class="controls">
+      <%= f.text_area :description, :rows => 5 %>
+    </div>
+  </div>
+
+  
+  
+  <div class="offset4">
+    <% if params[:action] == 'new' %>
+      <%= f.submit 'Add link to resource', :class => 'btn btn-primary' %>
+    <% elsif params[:action] == 'edit' %>
+      <%= f.submit 'Save changes', :class => 'btn btn-primary' %>
+    <% end %>
+    <%= f.submit 'Cancel', :class => 'btn' %>
+  </div>
+  
+<% end %>

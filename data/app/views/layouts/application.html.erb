@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>archives.nypl.org</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container container-fluid">
+  
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+      <a class="brand" href="/">data.archives.nypl.org</a>
+      <ul class="nav">
+        <li><%= link_to 'Collections', '/collections' %></li>
+        <li><%= link_to 'Divisions/Units', '/org_units' %></li>
+        
+        <% if user_signed_in? && current_user.can_access_class?(User) %>
+          <li><%= link_to 'Users', '/users' %></li>
+        <% end %>
+        
+        <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="#">Last Solr Update: <%=solr_last_update%>&nbsp;<b class="caret"></b>
+          <ul class="dropdown-menu">
+            <% if solr_running %>
+              <li><a class="solr-running">Solr update is currently running.</a></li>
+            <% else %>
+              <li><a href="/search_indices/update/delta">Run Delta Update</a></li>
+            <% end %>
+          </ul>
+        </li>
+        
+        <li>
+        <% if user_signed_in? %>
+          <%= link_to 'Sign out', '/users/sign_out', :method => 'delete' %>
+        <% else %>
+          <%= link_to 'Sign in', '/users/sign_in' %>
+        <% end %>
+        </li>
+      
+      </a>
+      </ul>
+
+      <%= render :partial => "searches/search_form", :locals => {:nav_search => true} %>
+    </div>
+  </div>
+  
+  <div class="content">
+    <%= render :partial => 'common/flash', :locals => { :flash => flash } %>
+    <%= yield %>
+  </div>
+
+</div>
+
+</body>
+</html>

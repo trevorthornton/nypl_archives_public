@@ -1,0 +1,170 @@
+<script type="text/javascript">
+  var orgs = <%= @orgs.to_json.html_safe %>;
+</script>
+
+<div class="documents documents-new">
+  
+  <h1>Add Collections</h1>
+
+
+
+  <div class="row">
+    <div class="span7">
+
+      <h3>Uploaded EAD</h3>
+      <div class="well well-small">
+
+        
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Filename</th>
+                <th>Org Unit</th>
+                <th>MSS ID</th>
+                <th>B-Number</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="ead-files-table">
+              <% @exiting_files.each do |file| %>    
+
+                <tr class="transition" id ="<%=CGI::escapeHTML(file['filename'].gsub('.xml',''))%>">
+                  <td class="filename" data-filename="<%=file['filename']%>"> <%=file['filename']%> </td>
+                  <td class="org-unit"> 
+
+                    <select class="org-unit-select tool-tip" title="Select the divsion this collection belongs to.">
+
+                      <option value="-1" <% if file['org'].blank?%>selected<%end%>>Select</option>
+
+                      <% @orgs.each do |o| %>
+
+                        <option data-placement="right" title="<%=o['name_short']%>" value="<%=o['id']%>" <% if o['code'].downcase == file['org'].downcase%>selected<%end%>><%=o['code']%></option>
+
+                      <% end %>
+
+                    </select>
+
+                  </td>
+                  <td> <input type="text" title="Enter the MSS ID of this collection. The system will try to pull it from the filename. It must be provied to move the collection into ingest." class="mss-id tool-tip" value="<%=file['mssId']%>" placeholder="Enter MSS Id"/></td>
+                  <td><input type="text" title="Enter the catalog B-Number if available." class="bnumber tool-tip" placeholder="Enter Catalog B-Number"/></td>
+                  <td>   
+                  <td> <button class="btn btn-primary btn-small tool-tip start-ingest-single" data-filename="<%=file['filename']%>" title="Move this EAD files into the ingest queue.">✓</button><button class="tool-tip btn btn-small btn-danger remove-tmp-ead" data-filename="<%=file['filename']%>" title="Delete this uploaded EAD file from the server.">X</button>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+      
+          <% if @exiting_files.length == 0 %>
+          <div class="none">There are no EAD files currently uploaded.</div>
+          <% end %>
+
+
+        <hr>
+
+        <div>
+          <div class="upload-button-holder">
+            <button id="upload-button" class="btn btn-success tool-tip" title="Upload EAD files to the server to ingest a new collecton into the system. They will appear in the list above.">Upload XML EAD Files</button>
+          </div>
+          <div class="ingest-all-button-holder">
+            <button class="btn btn-primary tool-tip" id="ingest-all" <% if @exiting_files.length == 0 %> disabled="true" <%end%> title="Ingest all EAD files listed above.">✓ Ingest All Listed</button>
+          </div>
+        </div>           
+
+        
+      </div>
+
+    </div>
+
+    <div class="span5">
+      <h3>Add From Catalog</h3>
+      <div class="well well-small catalog-ingest-div">
+
+     
+          <table class="table">
+            <thead>
+              <tr>
+                <th>B-Number</th>
+                <th>Org Unit</th>
+                <th>MSS ID</th>
+                <th></th>
+              </tr>
+            </thead>
+              <tr id="catalog-ingest-tr">
+                <td><input type="text" title="Enter the Catalog B-Number" class="bnumber tool-tip" placeholder="Enter Catalog B-Number"/></td>
+                <td>          
+                  <select class="org-unit-select tool-tip" title="Select the divsion this collection belongs to.">
+                    <option value="-1" selected="selected">Select</option>
+                    <% @orgs.each do |o| %>
+                      <option data-placement="right" title="<%=o['name_short']%>" value="<%=o['id']%>"><%=o['code']%></option>
+                    <% end %>
+                  </select>
+                </td>
+                <td><input type="text" title="Enter the MSS ID of this collection." class="mss-id tool-tip" placeholder="Enter MSS ID"/></td>
+                <td><button class="btn btn-primary btn-small tool-tip start-ingest-single" title="Move this Catalog B-Number into the ingest queue.">✓</button></td>
+              </tr>
+            </table>
+            <span class="catalog-ingest-error"></span>
+
+
+
+          
+          
+          
+
+
+
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+
+  <hr>
+  <a name="status"></a>
+  <div class="row">
+
+    <div class="span12">
+      <h3>Ingest Status</h3>
+      <div class="well well-small">
+            <table class="table table-striped" id="status">
+              <thead>
+                <tr>
+                  <th>MSS ID</th>
+                  <th>Name</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+
+
+            </table>
+      </div>
+    </div>
+  </div>  
+
+  <div class="row">
+
+    <div class="span12">
+      <h3>Successfully Ingested</h3>
+      <div class="well well-small">
+
+            <table class="table table-striped" id="ingested">
+              <thead>
+                <tr>
+                  <th>MSS ID</th>
+                  <th>Title</th>
+                  <th>Name</th>
+                  <th>Date</th>
+                  <th>View In</th>
+                </tr>
+              </thead>
+
+
+            </table>
+      </div>
+    </div>
+  </div>  
+
+
+  <div style="visibility:hidden"><input id="fileupload" type="file" name="files[]" multiple accept="text/xml"></div>
+</div>

@@ -1,0 +1,12 @@
+<% if @message_data[:collection] %>
+  RE: <%= @message_data[:collection] %>
+<% end %>
+
+<% @message_data[:fields].each do |k,v| %>
+
+  <%= v[:label] || 'Message' %>: <%= v[:value] %>
+
+<% end %>
+
+
+User Browser Information: <%= @message_data[:user_agent] %>

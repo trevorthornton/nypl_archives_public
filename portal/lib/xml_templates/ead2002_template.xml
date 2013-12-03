@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ead>
+  <eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511" relatedencoding="marc"
+    scriptencoding="iso8601"></eadheader>
+  
+  <archdesc level="collection"></archdesc>
+</ead>

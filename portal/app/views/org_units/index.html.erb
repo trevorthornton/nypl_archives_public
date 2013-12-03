@@ -1,0 +1,35 @@
+<div class="row span9 offset2">
+  
+  <h1>Archives and manuscripts repositories at The New York Public Library</h1>
+
+  <% @org_units.each do |o| %>
+
+  <div class="org-unit-info">
+  
+    <h2 class="org-unit-name"><%= link_to o.name, "/#{o.code.downcase}" %></h2>
+  
+    <div class="address">
+      <%= centers[o.center][:name] %>
+      <% if o.location %>, <%= o.location %><% end %>
+      <br/>
+      <%= centers[o.center][:address] %>
+    </div>
+    
+    
+    <% if o.description %>
+      <div class="description"><%= o.description.html_safe %></div>
+    <% end %>
+
+  
+    <div class="actions">
+      <%= link_to "Browse collections", "/#{o.code.downcase}" %>
+      <%= link_to "Contact the #{o.name_short}", contact_path(:action => 'compose', :org_unit_id => o.id, :layout => false),
+      :class => 'contact-link' %>
+      <% if o.url %><%= link_to "More info", o.url %><% end %>
+    </div>
+  
+  </div>
+
+  <% end %>
+
+</div>

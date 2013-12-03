@@ -1,0 +1,54 @@
+<div class="control-group">
+    <label class="control-label" for="user_name_first">First name</label>
+    <div class="controls">
+      <%= f.text_field(:name_first, :class => 'span5') %>
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <label class="control-label" for="user_name_first">Last name</label>
+    <div class="controls">
+      <%= f.text_field(:name_last, :class => 'span5') %>
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <label class="control-label" for="user_email">Email address<br/>
+      (will serve as user name)</label>
+    <div class="controls">
+      <%= f.text_field(:email) %>
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <label class="control-label" for="user_password"><%= params[:action] == 'edit' ? 'Reset ' : '' %>Password</label>
+    <div class="controls">
+      <%= f.text_field(:password) %>
+    </div>
+  </div>
+  
+  <% if !@role_options.empty? %>
+    <div class="control-group">
+      <label class="control-label" for="user_password">Role</label>
+      <div class="controls">
+        <%= f.select(:role,@role_options) %>
+      </div>
+    </div>
+  <% end %>
+  
+  <div class="control-group">
+    <label class="control-label" for="user_org_units">Accessible org units</label>
+    <div class="controls">
+      <% @org_unit_options.each do |o| %>
+      <% checkbox_class = o[2] %>
+      <label for="user_org_units_<%=o[1].to_s %>"<%= checkbox_class ? " class='#{checkbox_class}'" : '' %>>
+        <% checked = @user.org_unit_ids.include?(o[1]) %>
+        <%= check_box_tag('user[org_units][]', o[1], checked, :class => checkbox_class ) %>
+        <%= o[0] %>
+      </label>
+    <% end %>
+    </div>
+  </div>
+
+  <%= submit_tag("Save") %>
+  <%= cancel_button.html_safe %>

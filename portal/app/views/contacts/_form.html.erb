@@ -1,0 +1,109 @@
+<div class="form-wrapper" id="<%= mode %>-form">
+
+<% case mode %>
+<% when 'feedback' %>
+  <h1 class="form-heading">Tell us what you think</h1>
+<% when 'question' %>
+  <h1 class="form-heading">Contact <%= @org_unit ? "the #{@org_unit.name_short}" : "us" %></h1>
+<% when 'request' %>
+  <h1 class="form-heading">Request access to <%= @request_subject %></h1>
+<% end %>
+
+
+<%= form_tag('/contacts/deliver', :class => 'contact-form') do %>
+
+  <% if mode == 'feedback' %>
+    <div class="description">Leave a comment or report a problem. Name and email fields are optional (unless you require a response).</div>
+    <% fieldsets.each do |k,v| %>
+      <%= field_output(k,v).html_safe %>
+    <% end %>
+
+  <% else %>
+
+
+    <p id="error">Please make sure all required fields are fill out correctly.</p>
+    <p class="form-required-key">* = required field</p>
+    
+    <% if @collection && mode != 'request' %>
+      <div>
+        <label for="collection_id" class="radio inline radio-group-label">Are you writing in regard to the <span class="collection-title"><%= @collection.title %></span>?</label>
+        <label for="<%= "collection_id_#{@collection.id}" %>" class='radio inline'>
+          <%= radio_button_tag(:collection_id, @collection.id, :selected => 'selected') %>
+          Yes
+        </label>
+        <label for="<%= "collection_id_nil" %>" class='radio inline'>
+          <%= radio_button_tag(:collection_id, nil) %>
+          No
+        </label>
+      </div>
+    <% end %>
+    
+    <% fieldsets.each do |k,v| %>
+      <%= fieldset_output(k,v).html_safe %>
+    <% end %>
+    
+    
+    <%= hidden_field_tag(:mode, mode) %>
+
+    <%= hidden_field_tag(:layout_mode, @layout) %>
+    
+    <% if @collection %>
+      <%= hidden_field_tag(:collection_id, @collection.id) %>
+    <% end %>
+    
+    <% if @org_unit %>
+      <%= hidden_field_tag(:org_unit_id, @org_unit.id) %>
+    <% end %>
+    
+    <% if mode == 'request' %>
+      <%= terms_output(@org_unit.id || nil).html_safe %>
+    <% end %>
+    
+  <% end %>
+  
+  <%= submit_tag('Submit', :class => 'btn') %>
+  <%= link_to('Cancel', '', :class => 'btn', :id => 'form-cancel') %>
+  
+<% end %>
+
+  <div class="contact-success" id="<%= mode %>-form-success">
+    <h1>Thank you</h1>
+  <% case mode %>
+  <% when 'feedback' %>
+    <p>Your feedback is important in helping us improve the site.</p>
+  <% when 'question' %>
+    <p>We will respond to you via the email provided as soon as possible.</p>
+  <% when 'request' %>
+    <p>Your inquiry has been submitted<%= @org_unit ? " to the #{@org_unit.name_short}" : '' %>.
+      We will respond to you via the email provided as soon as possible.</p>
+  <% end %>
+    <%= link_to "Close", '#', :id => 'form-success-close', :class => 'btn btn-large' %>
+  </div>
+
+
+  <div class="contact-success-static" id="<%= mode %>-form-success-static">
+
+    <% case mode %>
+    <% when 'feedback' %>
+
+    <% when 'question' %>
+
+    <% when 'request' %>
+      <h1 >We have received your request.</h1>
+      <p>Your inquiry has been submitted<%= @org_unit ? " to the #{@org_unit.name_short}" : '' %>.
+        We will respond to you via the email provided as soon as possible.</p>
+
+
+        <ul>
+          <li><span><a href="<%= @org_unit.url%>">View hours and directions for the <%= @org_unit.name%></a></span>.</li>
+          <li><span><a href="/<%= @org_unit.code%>">Browse the holdings of the the <%= @org_unit.name%></a></span>.</li>
+          <li><span><a href="/">Explore all of the The New York Public Library's archival and manuscript holdings</a></span>.</li>
+
+
+        <ul>
+
+
+
+    <% end %>
+  </div>
+</div>

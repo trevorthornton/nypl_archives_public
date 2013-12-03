@@ -1,0 +1,63 @@
+<div>
+  <label for="org_unit_name">Name:</label>
+  <%= f.text_field(:name, :class => 'span5') %>
+</div>
+
+<div>
+  <label for="org_unit_name_short">Short name (for use in select lists, etc. - leave blank to use same name as above):</label>
+  <%= f.text_field(:name_short, :class => 'span5') %>
+</div>
+
+<div>
+  <label for="org_unit_code">NYPL unit code:</label>
+  <%= f.text_field(:code, :class => 'span2') %>
+</div>
+
+<div>
+  <label for="org_unit_center">NYPL location:</label>
+  <%= f.select(:center, library_center_select_options(), { :include_blank => true } , :class => 'span5') %>
+</div>
+
+<div>
+  <label for="org_unit_location">Specific location (floor, room, etc.)</label>
+  <%= f.text_field(:location, :class => 'span5') %>
+</div>
+
+<div>
+  <label for="org_unit_email">Email address (for patron inquiries)</label>
+  <%= f.text_field(:email, :class => 'span5') %>
+</div>
+
+<div>
+  <label for="org_unit_code">MARC Organization Code:</label>
+  <%= f.text_field(:marc_org_code, :class => 'span2') %>
+  <span class="help-block">Use values from <%=link_to('MARC Code List for Organizations','http://www.loc.gov/marc/organizations/',:target => '_blank') %>
+</div>
+
+<div>
+  <label for="org_unit_standard_access_note">Standard access note</label>
+  <p class="description">inline HTML only</p>
+  <%= f.text_area(:standard_access_note, :rows => 4, :class => 'span5') %>
+</div>
+
+<div>
+  <label for="org_unit_access_rules">Access rules</label>
+  <p class="description">Format as HTML lists(s)</p>
+  <%= f.text_area(:access_rules, :rows => 8, :class => 'span5') %>
+</div>
+
+<div>
+  <label for="org_unit_email_response_text">Email response text</label>
+  <p class="description">Body of email sent to users upon submission of contact forms. Inline HTML only.</p>
+  <%= f.text_area(:email_response_text, :rows => 4, :class => 'span5') %>
+</div>
+
+<div>
+  <label for="org_unit_url">NYPL.org URL</label>
+  <%= f.text_field(:url, :class => 'span5') %>
+</div>
+
+<div>
+  <label for="org_unit_standard_description">Description</label>
+  <%= f.text_area(:description, :rows => 4, :class => 'span5') %>
+</div>

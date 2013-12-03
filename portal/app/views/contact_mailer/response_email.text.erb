@@ -1,0 +1,16 @@
+<% if (@message_data[:auto_response_text]) %>
+
+	<%=raw @auto_response_text%>
+
+<% else %>
+
+
+	Thank you for contacting the <%=@message_data[:org_unit_long_name]%><%=@org_unit_location%>. Our staff will respond directly to the email address included in your request. For information about the <%=@message_data[:org_unit_short_name]%>, including location and hours, please visit <%=@message_data[:org_unit_url]%>
+
+
+	If you have a general question about the New York Public Library, please contact AskNYPL at http://www.nypl.org/ask-nypl
+
+
+
+<% end %>
+

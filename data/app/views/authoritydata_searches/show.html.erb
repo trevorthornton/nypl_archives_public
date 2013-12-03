@@ -1,0 +1,22 @@
+<div class="authoritydata_search_container">
+  <h2><%= @title %></h2>
+
+  <div class="dynamic_section">
+
+    <div class="authority_search_form_wrapper">
+    <%= form_tag({:controller => 'authoritydata_searches', :action => 'results', :element_type => @element_type}, :class => 'dynamic_results_form') do %>
+    <%= text_field_tag(:q, '', :size => 50) %>
+    <%= submit_tag('Search') %>
+    <% end %>
+    </div>
+
+    <div class='dynamic_content_container'>
+      <div class='dynamic_content'>   
+
+      
+      </div>
+    </div>
+    
+  </div>
+  
+</div>

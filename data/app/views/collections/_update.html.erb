@@ -1,0 +1,18 @@
+<div id="update" class="show-section">
+  
+  <h2>Update Collection <a href="#" class="top-link">TOP</a></h2>
+    
+    <% if @is_catalog %>
+      <h3>Update from Catalog</h3>
+      <div>
+        <button id="update-bnumber-button" data-org="<%=@org%>" data-bnumber="<%=@collection.bnumber%>" data-id="<%=@collection.identifier_value%>" class="btn btn-small">Request Catalog Update</button>              
+      </div>
+    <% end %>
+      <h3>Update from EAD XML File</h3>
+      <div>
+        <button id="upload-update-button" data-org="<%=@org%>" data-bnumber="<%=@collection.bnumber%>" data-id="<%=@collection.identifier_value%>" data-orgid="<%=@collection.org_unit_id%>"  class="btn btn-small">Upload Replacement EAD XML File</button>              
+        <div style="visibility:hidden"><input id="fileupload" type="file" name="files[]" accept="text/xml"></div>
+      </div>
+  
+  
+</div>

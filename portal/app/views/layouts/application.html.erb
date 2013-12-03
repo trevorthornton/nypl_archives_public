@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html version="HTML+RDFa 1.1" lang="en"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:schema="http://schema.org/"
+	xmlns:dcterms="http://purl.org/dc/terms/"
+	xmlns:dcmitype="http://purl.org/dc/dcmitype/"
+	xmlns:bibo="http://purl.org/ontology/bibo/"
+	xmlns:arch="http://purl.org/archival/vocab/arch#"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:foaf="http://xmlns.com/foaf/0.1/">
+
+<head>
+  <title><%= page_title() %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  
+  <script type="text/javascript">
+  <% if @collection_structure_json %>
+      var collection_structure = <%= raw @collection_structure_json %>;
+      var collection_component_count = <%= raw @collection_component_count %>;
+      var collection_response = <%=raw @collection_data_json %>;
+  <% else %>
+      var collection_structure = {};
+      var collection_component_count = 0;
+      var collection_response = {};
+  <% end %>
+  </script> 
+
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-1420324-109']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+  
+</head>
+
+
+<body class='<%= params[:controller] + '-' + params[:action] %>' data-spy="scroll" data-target=".sidenav">
+
+
+
+  <%# wrapper for collection-level RDFa %>
+  <% if params[:controller] == 'collections' && params[:action] == 'show' %>
+  <div id="wrap" typeof="schema:CreativeWork bibo:Collection dcmitype:Collection">
+  <% else %>
+  <div id="wrap">
+  <% end %> 
+  
+    <div class="navbar navbar-fixed-top">
+      
+      <%= render :partial => "common/nypl_header" %>
+      
+      <div class="navbar-inner">
+        <div class="container nav-top">
+          
+          <div class="site-name"><a href="/"><span class="sub">New York Public Library</span> <span>Archives &amp; Manuscripts<span></a></div>
+          
+          <ul class="nav no-print">
+            <li><a href="/repositories">Browse repositories</a></li>
+            <li class="feedback"><a href="<%= url_for contact_path(:layout => false, :mode => 'feedback') %>" data-colorbox="true">Leave feedback</a></li>
+          </ul>
+          
+          <% if (params[:controller] != 'searches') && (params[:action] != 'home') %>
+            <%= render :partial => "searches/search_form", :locals => {:nav_search => true} %>
+          <% end %>
+          
+        </div>
+      </div>
+  
+      <% if params[:controller] == 'collections' && @collection_data %>
+      <div class="container collection-head">
+        
+        
+        
+        <div class="row">
+          
+          <% if @search_results_url %>
+          <div class="span3 backlink">
+            <%= link_to "Back to search results", @search_results_url %>
+          </div>
+          <% end %>
+          
+          <div class="span9<%= @search_results_url ? '' : ' offset3' %> content-col">
+            <%= render :partial => 'collections/collection_head' %>
+          </div>
+        </div>
+        
+      </div>
+      <% end %>
+    
+    </div>
+
+
+    <div class="container content main-content <%= params[:controller] %>-<%= params[:action] %>">  
+      <%= yield %>
+    </div>
+  
+
+  </div>
+  
+  <%= render :partial => "common/footer" %>
+  
+  
+</body>
+</html>

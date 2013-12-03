@@ -1,0 +1,38 @@
+<% case @describable_type %>
+<% when 'Collection' %>
+<h1><%= @collection.title %></h1>
+<% when 'Component' %>
+<h1>
+  <span><%= @component.collection.title %></span>
+  <%= @component.title %>
+</h1>
+<% end %>
+
+<h2>Related collections</h2>
+
+<%= form_tag("/collection_associations/#{@object.id}/update") do %>
+  <%= hidden_field_tag(:describable_type, @describable_type) %>
+  
+  <div class="list_builder">
+    
+    <div class="selections">
+    </div>
+    
+    <label for="related_collection">Choose related collection and add to list</label>
+    <div class="options well">
+      <% @collection_options.each do |o| %>
+      <div class="option" title="<%= o.id.to_s %>">
+        <a class="btn btn-mini select_remove">Add</a>
+        <%= o.origination %> - <%= o.title %>
+        <%= hidden_field_tag('related_collections[]', o.id.to_s) %>
+      </div>
+      <% end %>
+    </div>
+    
+  </div>
+
+
+  <div>
+  <%= submit_tag('Submit', :class => 'btn') %>
+  </div>
+<% end %>

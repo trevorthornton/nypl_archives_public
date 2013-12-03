@@ -1,0 +1,36 @@
+<h1>Users</h1>
+
+<table class="table users-table table-hover" cellspacing="0">
+  <tr>
+    <th class="user-id">id</th>
+    <th>name</th>
+    <th>email</th>
+    <th>role</th>
+    <th>org units</th>
+    
+    
+    <th></th>
+    
+  </tr>
+  
+<% @users.each do |u| %>
+  <tr>
+    <td class="user-id"><%= u.id %></td>
+    <td><%= u.name_first %> <%= u.name_last %></td>
+    <td><%= u.email %></td>
+    <td><%= u.role %></td>
+    <td>
+      <% codes = u.org_units.map { |o| o.code } %>
+      <%= codes.join ',' %>
+    </td>
+     
+    <td class="actions">
+    <% if current_user.can_modify_user?(u) %>
+      <%= link_to "Edit", {:action => 'edit', :id => u.id}, :class => 'btn btn-mini'%>
+    <% end %>
+    </td>
+    
+  </tr>
+<% end %>
+
+</table>

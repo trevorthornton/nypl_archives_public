@@ -1,0 +1,33 @@
+// Place all the styles related to the org_units controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "variables";
+@import "mixins";
+
+.org-unit-info {
+  
+  margin: ($baseFontSize * 2) 0;
+
+  h2 {
+    margin: 0 0 $baseFontSize / 3;
+  }
+  
+  .actions {
+    a {
+     margin-right: $baseFontSize * 2;
+     text-decoration: underline;
+    }
+  }
+  
+  .address {
+    color: gray;
+    font-size: $baseFontSize * 0.8;
+    line-height: $baseFontSize * 1.2;
+    text-transform: uppercase;
+  }
+  
+  .description {
+    margin: ($baseFontSize / 2) 0;
+  }
+}

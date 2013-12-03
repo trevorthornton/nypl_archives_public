@@ -1,0 +1,134 @@
+<% @description_sections = generate_description_sections %>
+<div id="viz-nav-control" class="hidden-phone hidden-tablet visible-desktop"><i class="icon-chevron-left"></i><i class="icon-chevron-left"></i></div>
+
+<div class="hidden-phone hidden-tablet visible-desktop" id="viz-nav-loading-placeholder">
+  <div>Loading...</div>
+</div>
+
+<div class="row collection-info" id="collection-overview">
+
+  <div class="span3 sidebar">
+    
+    <ul class="nav nav-tabs nav-stacked sidenav collection-info-sidenav affix" id="navTab">
+      <% @description_sections.each do |k,v| %>    
+        <%
+          if k == 'resources' 
+            next 
+          end 
+        %> 
+        <li class="<%= k == 'descriptive_identity' ? 'active' : '' %>">
+          <a href="#<%= k %>" data-toggle="scrollto"><%= description_section_labels(k).html_safe %></a>
+        </li>
+      <% end %>
+
+
+      <% if @description_sections['resources'] %>
+
+
+        <li>
+            <div class="additional-resources">
+              <span>Additional Resources:</span>
+              <%=@description_sections['resources'].html_safe%>
+          </div>
+        </li>
+
+
+      <% end %>
+
+
+    </ul>
+
+
+
+    
+  </div>
+  
+  
+  <div class="span9 collection-info-content content-col">
+    
+    <div id="navTabContent" class="tab-content">
+      <% @description_sections.each do |k,v| %>
+        <div class="scrollto-section<%= k == 'descriptive_identity' ? ' active' : '' %>" id="<%= k %>">
+          <%= v.html_safe %>
+        </div>
+      <% end %>
+    </div> 
+      
+
+
+    <% if @render_container_list %>
+
+      <h2>Container List</h2>
+      <div id="collection-detailed-static" style="display:block">
+        <% @components.each do |c| %>
+          <%= build_component(c).html_safe %>
+        <% end %>
+      </div>
+
+    <% end %>
+  
+
+    <% if Rails.env == 'development' %>
+    <%= render :partial => 'dev_debug_links' %>
+    <% end %>
+
+
+  </div>  
+  
+
+</div>
+
+<div id="collection-content-viz">
+
+  <span class="status"></span>
+  <button class="btn">Close</button>
+
+</div>
+
+<div class="row collection-info" id="collection-detailed">
+
+
+
+  <div class="span3 sidebar collection-info-sidenav">
+
+    <div id="nav-detailed-container">
+
+      <div id="nav-detailed-list">
+        <ul class="nav nav-tabs nav-stacked sidenav collection-info-sidenav"></ul>
+      </div>     
+      
+      
+      <div id="nav-filter">  
+
+        <div class="input-append">
+          <form action="#" id="nav-filter-form">
+          <input placeholder="Filter by keyword or year" type="text">
+          <button class="btn primary" type="submit"><i class="icon-refresh"></i></button>            
+          </form>
+        </div>
+        <div id="nav-filter-clear"><a href="#" class="btn">Clear Filter (ESC Key)</a></div>
+        <div id="nav-filter-no-results">No Results</div>
+      </div>
+
+    </div>
+
+  </div>
+  
+  <div class="span9 collection-info-content content-col" id="collection-content-detailed">
+ 
+  </div>  
+  <div class="span9 collection-info-content content-col" id="collection-content-searchresults">
+
+  </div>
+
+
+<div id="status-pie"></div>
+<div class="footer-spacer"></div>
+
+
+
+<div id="lightbox" class="lightbox hide fade"  tabindex="-1" role="dialog" aria-hidden="true">
+  <div class='lightbox-content' id = "lightbox-content">
+    
+  </div>
+</div>

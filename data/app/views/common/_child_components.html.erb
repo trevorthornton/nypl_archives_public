@@ -1,0 +1,18 @@
+<div id="child-components" class="show-section">
+  
+  <h2>Child components <a href="#" class="top-link">TOP</a></h2>
+  
+  <% if !@children.empty? %>
+    <ol>
+      <% @children.each do |c| %>
+        <% link_text = c.title + (c.has_children ? " [#{c.children.length.to_s}/#{c.max_depth.to_s}]" : "") %>
+        <li><%= link_to link_text, "/components/#{c.id}" %></li>
+      <% end %>
+    </ol>
+  <% else %>
+    <p class="empty-label">No child components.</p>
+  <% end %>
+  
+  
+  
+</div>

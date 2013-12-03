@@ -1,0 +1,12 @@
+<!-- <input type='hidden' name='q' value='<%= @q %>'/> -->
+<input type="hidden" name="result_set_collection_ids" value ="<%= @result_set_collection_ids %>"/>
+<input type="hidden" name="total_pages" value ="<%= @total_pages %>"/>
+<input type="hidden" name="total_collections" value ="<%= @total_collections %>"/>
+<input type="hidden" name="start_seq" value ="<%= @start_seq %>"/>
+
+<!-- <input type="hidden" name="next_start" value ="<%= @total_collections %>"/> -->
+<% if @filters %>
+  <% @filters.each do |k,v| %>
+    <input type="hidden" name="filters[<%=k %>]" value ="<%= v %>"/>
+  <% end %>
+<% end %>

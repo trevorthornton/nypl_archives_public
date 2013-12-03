@@ -1,0 +1,438 @@
+@import "drr/drr-base";
+
+@import "mixins";
+
+// @import "mixins/960";
+// @import "compass/css3/transition";
+
+@import "nypl-header";
+
+// Added, should have been in drr-base
+@font-face {
+  @include font-face('Lato Bold', $fontPath, 'lato-bol-webfont');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  @include font-face('Lato Regular', $fontPath, 'lato-bol-webfont');
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+span {
+  &.heading {
+    text-transform: uppercase;
+  }
+  
+  &.title {
+    font-style: italic;
+  }
+  
+}
+
+
+body {
+  
+  // Body reset
+  margin: 0;
+  font-family: $baseFontFamily;
+  font-size: $baseFontSize;
+  line-height: $baseLineHeight;
+  color: $textColor;
+  background-color: $bodyBackground;
+  letter-spacing: $baseLetterSpacing;
+  
+  .content {
+    margin-top: $baseFontSize * 0.5;
+    margin-bottom: $baseFontSize;
+    
+    &.org_units-index {
+      margin-top: $baseFontSize * 2;
+    }
+  
+  }
+  
+  p {
+    @include paragraph;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @include drr-heading();
+  }
+  
+  h2, h3, h4, h5, h6 {
+    @include heading-margin;
+  }
+  
+  h1 { 
+    font-size: $h1FontSize;
+    line-height: $h1FontSize;
+    text-transform: none;
+    font-family: $boldFontFamily;
+    span.subtitle {
+      display: block;
+      font-size: $h1FontSize * 0.7;
+    }
+  }
+  
+  h2 { 
+    font-size: $h2FontSize;
+    line-height: $h2FontSize;
+  }
+  
+  h3 { 
+    font-size: $h3FontSize;
+    line-height: $h3FontSize;
+  }
+  
+  h4 { 
+    font-size: $h4FontSize;
+    line-height: $h4FontSize;
+  }
+  
+  h5 { 
+    font-size: $h5FontSize;
+    line-height: $h5FontSize;
+  }
+  
+  h6 { 
+    font-size: $h6FontSize;
+    line-height: $h6FontSize;
+  }
+
+  a {
+    color: $blue;
+    text-decoration: none;
+    &:hover, &:focus {
+      color: $blueBright;
+      text-decoration: underline;
+    }
+  }
+  
+  blockquote {
+    margin: 0 0 $baseLineHeight / 2;
+    padding: 0 $baseFontSize * 2;
+  }
+  
+  .head {
+    font-weight: bold;
+  }
+
+  .collection-title {
+    font-weight: bold;
+    font-style: italic;
+    padding: 0 2px;
+  }
+
+}
+
+
+
+
+#wrap {
+  min-height: 300px;
+}
+
+#nypl-header {
+  font-size: $baseFontSize * 0.9;
+}
+
+
+
+
+form {
+  textarea {
+    height: auto; 
+  }
+  
+  #error {
+  	color: $orange;
+  	font-weight: bold;
+  	display:none;
+  }
+  
+  .needsfilled {
+  	border: 2px solid $orange;
+  }
+  
+  .validation-warning {
+    padding-left: $baseFontSize;
+    color: $orange;
+  }
+  
+  .field-description {
+    font-size: $baseFontSize * 0.85;
+    line-height: $baseFontSize * 1.25;
+    color: $gray;
+  }
+  
+}
+
+a.removelink {
+  content: attr(data-icon);
+  font-family: "Icomoon";
+  text-decoration: none;
+  padding: 0 5px;
+}
+  
+.btn {
+  &.btn-mini {
+    line-height: $baseFontSize;
+  }
+}
+
+.search {
+  font-family: $baseFontFamily;
+  button {
+    color: $blue;
+  }
+}
+
+
+
+
+
+
+
+.navbar {
+
+  .site-name {
+    text-transform: uppercase;
+    font-size: 28px;
+    line-height: 1em;
+	  font-family: "Lato Bold";
+    font-weight: $headingsFontWeight;
+    letter-spacing: .04em;
+    padding: ($baseFontSize) 0 15px ($baseFontSize * 1.5);
+    color: $grayDarkest;
+    
+    a {
+      color: $grayDarkest;
+      text-decoration: none;
+      &:hover {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+    
+    span {
+      white-space: nowrap;
+      &.sub {
+        color: $gray;
+      }
+    }
+    
+  }
+  
+  &.navbar-fixed-top {
+    .navbar-inner {
+      padding: 0;
+    }
+  }
+
+
+  .navbar-inner {
+    -webkit-box-shadow: 0 0 0 rgba(0,0,0,.0);
+    -moz-box-shadow: 0 0 0 rgba(0,0,0,.0);
+    box-shadow: 0 0 0 rgba(0,0,0,.0);
+    background: $grayLightest;
+    position: relative;
+    border-bottom: 2px solid $gray;
+    
+    .container.nav-top {
+      margin: 0;
+      min-height: 75px;
+    }
+  }
+
+  .container.collection-head {
+    background: $bodyBackground;
+    //taken out by matt 10/4
+    //padding-bottom: $baseFontSize * 1.3;
+    //padding-top: $baseFontSize;
+    padding: 0;
+    .row {
+      background: $bodyBackground;
+    }
+  }
+
+  .content-col{
+    padding-bottom: $baseFontSize * 1.5;
+  }
+  
+  .nav {
+    font-family: $mainFontFamily;
+    position: relative;
+    padding: 0 ($baseFontSize * 1.5) ($baseFontSize / 2) ($baseFontSize * 1.5);
+    font-size: $baseFontSize * 1.1;
+    
+    li a {
+      float: none;
+      padding: 0 30px 0 0;
+      color: $grayDarker;
+      text-decoration: none;
+      text-shadow: none;
+    
+      &:hover {
+        color: $blueBright;
+      }
+    }
+    
+    
+    
+  }
+
+  .navbar-search {
+    position: absolute;
+    float: none;
+    // top: $nyplHeaderheight + 35px;
+    bottom: 0;
+    right: $baseFontSize;
+    line-height: $baseFontSize * 1.5;
+    
+    input {
+      width: 200px;
+    }
+    
+    button {
+      color: $blue;
+    }
+  }
+  
+  
+}
+
+
+.sidebar {
+
+  font-family: $mainFontFamily;
+  font-size: $baseFontSize * 0.9;
+  
+  h2 {
+    font-size: $baseFontSize * 1.25;
+    line-height: $baseFontSize * 1.5;
+    margin-bottom: $baseFontSize * 0.25;
+  }
+  
+  .call_number {
+    font-size: $baseFontSize * 1.25;
+    color: $grayDark;
+  }
+  
+  .nav-tabs {
+    // text-transform: uppercase;
+    font-size: $smallFontSize;
+    .active a, .active a:hover, .active > a:focus {
+      background-color: $green;
+      color: $white;
+    }
+    
+    a {
+      color: $grayDark;
+      &:hover, &:active {
+        background-color: $greenLight;
+        color: $grayDark;
+        transition:background-color .2s;
+        -webkit-transition:background-color .2s;
+      }
+    }
+    
+  }
+ 
+}
+
+
+.pagination {
+  margin: 0;
+}
+
+.pagination-wrapper {
+  margin: ($baseFontSize * 1.5) 0;
+  
+  .pagination-summary, form {
+    display: inline;
+    padding: 0 ($baseFontSize / 2);
+  }
+  
+}
+
+
+.truncate {
+  .truncate-link {
+  }
+}
+
+
+#footer {
+	font-size: $baseFontSize * 0.8;
+	line-height: $baseFontSize;
+	margin-top: $baseFontSize * 2;
+	padding: $baseFontSize * 2;
+	border-top: 1px solid $gray;
+  
+  a {
+    color: $textColor;
+    &:hover {
+      color: $linkColorHover;
+    }
+  }
+
+	@media print {
+		display: none;
+	}
+
+	ul {
+		margin: 0;
+		li {
+			display: inline;
+			padding: 0 ($baseFontSize * 2) 0 0;
+		}
+	}
+	
+	.copyright {
+		margin: 0 0 $baseFontSize * 2;
+	}
+}
+
+
+.development-only {
+  margin: $baseFontSize 0;
+  padding: $baseFontSize / 2 ;
+  border: 1px solid $white;
+  background: $grayLightest;
+  .btn,.dev-label {
+    opacity: 0.8;
+  }
+  .dev-label {
+    font-size: $baseFontSize * 0.8;
+    line-height: $baseFontSize * 0.8;
+  }
+}
+
+#cboxOverlay, #colorbox {
+  z-index: 9999;
+}
+
+
+/*Always show scroll bars*/
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+    width: 11px;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 11px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid whitesmoke; /* should match background, can't be transparent */
+    background-color: rgba(0, 0, 0, .5);
+}
+

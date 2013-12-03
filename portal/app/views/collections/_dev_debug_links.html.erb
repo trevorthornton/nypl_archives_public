@@ -1,0 +1,7 @@
+<div class="development-only">
+  <span class="dev-label">DEVELOPMENT ONLY</span>
+  <%= link_to "view in data.archives", "http://dev.data.archives.nypl.org/collections/#{@collection.id}",
+    {:target => '_blank', :class => 'btn btn-mini'} %>
+    
+  <%= link_to "show raw data", "/collection/#{@collection.id}/raw", { :data => { :colorbox => true, :colorbox_height => '500px', :colorbox_width => '900px' }, :class => 'btn btn-mini' } %>
+</div>

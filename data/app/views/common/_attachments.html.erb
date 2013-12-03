@@ -1,0 +1,46 @@
+<div id="file-attachments" class="file-attachments subsection">
+  
+  <h3>File attachments</h3>
+
+  <% if !@documents.blank? %>
+    <table class="table attachments-table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Filename</th>
+          <th>Document type</th>
+          <th>Description</th>
+          <th>Index only</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @documents.each do |d| %>
+          <tr>
+            <td><%= d.title ? d.title : '--' %></td>
+            <td><%= link_to d.file, d.file_url %></td>
+            <td><%= d.document_type ? d.document_type : '--' %></td>
+            <td><%= d.description ? d.description : '--' %></td>
+            <td><%= d.index_only ? '&#10003;'.html_safe : '' %></td>
+            <td>
+
+              <%= link_to("Delete", d, :method => :delete, :class => 'btn btn-mini pull-right') %>
+              
+              <%= link_to 'Edit', edit_document_path(:id => d.id, :layout => false),:class => 'btn btn-mini pull-right', :data => {:colorbox => true } %>
+              
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="empty-label">No files attached.</p>
+  <% end %>
+  
+  <div>
+    <%= link_to "Attach a file", new_document_path(:describable_type => record.class.to_s, :describable_id => record.id, :layout => false), :class => 'btn btn-small', :data => {:colorbox => true } %>
+
+
+  </div>
+  
+</div>

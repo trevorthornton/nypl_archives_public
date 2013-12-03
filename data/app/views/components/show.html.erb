@@ -1,0 +1,53 @@
+<%= render :partial => 'breadcrumb' %>
+<h1>
+  <%= @component.title %>
+</h1>
+
+<%= render :partial => 'common/show_section_menu' %>
+
+<div class="well">
+  <dl class="dl-horizontal">
+    <dt>id</dt>
+    <dd><%= @component.id %></dd>
+  
+    <dt>level (num)</dt>
+    <dd><%= @component.level_num || "[missing]" %></dd>
+  
+    <dt>level (text)</dt>
+    <dd><%= @component.level_text || "[missing]" %></dd>
+  
+    <% if @component.identifier_value %>
+      <dt>identifier (<%= @collection.identifier_type %>)</dt>
+      <dd><%= @component.identifier_value %></dd>
+    <% end %>
+  
+    <dt>max depth</dt>
+    <dd><%= @component.max_depth || "N/A" %></dd>
+    
+    <dt>boost queries</dt>
+    <dd>
+      <%= @boost_queries.join(', ') %>
+      <%= link_to 'add/edit', edit_component_path(:id => @component.id, :layout => false, :update_type => 'boost_queries'),
+          :class => 'inline-edit-link', :data => {:colorbox => true } %>
+    </dd>
+    
+    <dt>created</dt>
+    <dd><%= @component.created_at.to_s %></dd>
+  
+    <dt>updated</dt>
+    <dd><%= @component.updated_at.to_s %></dd>
+  </dl>
+</div>
+
+<%= render :partial => 'common/description' %>
+
+<%= render :partial => 'uuid' %>
+
+
+<hr>
+
+<%= render :partial => 'common/attachments', :locals => { :record => @component } %>
+<hr>
+<%= render :partial => 'common/links', :locals => { :record => @component } %>
+<hr>
+<%= render :partial => 'common/child_components' %>

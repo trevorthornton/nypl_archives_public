@@ -1,0 +1,48 @@
+<div class="row-fluid search-results-container">
+  
+  <% if @display_facets && !@hide_facets %>
+	  <div class="span3 sidenav">  	  
+      <div class="facet-filter">
+        <%= facets.html_safe %>
+      </div>
+	  </div>
+	<% end %>
+	
+	<% if !@hide_facets %>
+	  <div class="span9 search-results content-col">	  
+	<% else %>
+	  <div class="span11 offset1 search-results content-col">
+	<% end %>
+	 
+	  <%= render :partial => "searches/search_form" %>
+	  
+	  <h1 class="results-info"><%= search_results_heading.html_safe %></h1>
+	  
+	  <%= facet_list.html_safe %>
+		
+		<div class="dynamic-content">
+		
+  		<% if @pagination_details[:total_pages] > 1 %>
+  		<%= render :partial => "search_pagination" %>
+  		<% end %>
+		
+  		<div id="resultlist">
+  			<% @results.each do |doc| %>
+  			  <%= render :partial => "searches/search_result", :locals => {:doc => doc } %>
+  			<% end %>
+  		</div>
+		  
+		  <% if @pagination_details[:total_pages] > 1 %>
+  		<%= render :partial => "search_pagination" %>
+  		<% end %>
+		
+  	</div>
+  	
+	</div>
+		
+</div>
+<% if has_digital_assets(@results) %>
+	<div class="has-digital-content-legend">
+		<span class="has-digital-content-icon"></span>Indicates that portions of this collection have been<br>digitized and are available online.
+	</div>
+<% end %>

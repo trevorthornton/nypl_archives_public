@@ -1,0 +1,16 @@
+<% if @message_data[:collection] %>
+  <div style="margin-bottom: 1em;">
+    <strong>RE:</strong> <%= @message_data[:collection] %>
+  </div>
+<% end %>
+
+<% @message_data[:fields].each do |k,v| %>
+  <div style="margin-bottom: 1em;">
+    <strong><%= v[:label] || 'Message' %>:</strong> <%= v[:value] %>
+  </div>
+<% end %>
+
+
+<div style="margin-top: 5em;">
+	User Browser Information: <%= @message_data[:user_agent] %>
+</div>

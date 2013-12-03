@@ -1,0 +1,44 @@
+<% @show_pager = @results_total > @per_page ? true : false %>
+<div class='dynamic_content'> 
+
+  <%# render :partial => 'common/pager', :locals => {:link_params => pager_link_params['authority_queries'], :show_pager => @show_pager, :show_per_page => false} %>
+  
+  <%# render :partial => 'results_filters' %>
+
+  <p class="results_info_text">Click term to view record (only available for terms from LC authorities)</p>
+
+  <table cellspacing="0">
+  
+    <tr>
+      <th>Authorized term</th>
+      <th>Type</th>
+      <th>Authority</th>
+      <th>Action</th>
+    </tr>
+    
+    <% if @results_total > 0 %>
+
+      <% @results.each do |r| %>
+      <tr class="term">
+        <td><%= !r['uri'].nil? ? link_to(r['term'], r['uri'], :target => '_blank') : r['term'] %></td>
+        <td><%= term_type_label(r['term_type']) %></td>
+        <td><%= r['authority_name'] %></td>
+        <td>
+          <form class="term_data_selector">
+            <input type='hidden' name='term_json' value='<%= solr_result_to_json(r) %>'/>
+            <button type="button" class='select_term'>Use this term</button>
+          </form>      
+        </td>
+      </tr>
+      <% end %>
+    <% else %>
+      <tr class="term no_results">
+        <td class="no_results" colspan="4">No results found :(</td>
+      </tr>
+    <% end %>
+
+  </table>
+
+  <%# render :partial => 'common/pager', :locals => {:link_params => pager_link_params['authority_queries'], :show_pager => @show_pager, :show_per_page => false} %>  
+
+</div>

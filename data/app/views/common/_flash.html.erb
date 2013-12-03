@@ -1,0 +1,14 @@
+<% if !flash.empty? %>
+  <div class="alert flash" %>
+
+  <% flash.each do |name, msg| %>
+    <% flash_class = "text-#{name}" %>
+    <% if !msg.blank? and msg.class != TrueClass %>
+      <% msg_content = (flash_class != 'text-message') ? "<span class='flash-name'>#{name}</span>: " : '' %>
+      <% msg_content += msg %>
+      <%= content_tag :p, msg_content.html_safe, :id => "#{flash_class}", :class =>"#{flash_class}#{flash_class != 'flash_message' ? ' flash_message' : ''}" %>
+    <% end %>
+  <% end %>
+
+  </div>
+<% end %>

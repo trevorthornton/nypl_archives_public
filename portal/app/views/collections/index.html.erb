@@ -1,0 +1,24 @@
+<div class="main">
+
+	<div id="intro">
+		<h1>NYPL Archival Collections</h1>
+		<p>Archives contain unique and unpublished records created by people and organizations as they lived and worked. They preserve evidence of human activity and achievement.</p>
+
+    <p>archives.nypl.org will open the vast archival and manuscript holdings of The New York Public Library to exploration and research. From here you will be able to search over 6000 archival collections, initiate a research visit, submit a query to an archivist, and access digitized material.</p>
+
+    <p>For now, you can access two of our important collections, both of which are almost completely digitized and available online. For access to all of the NYPL archival collections, please visit the Find Archival Materials tool on our main site.</p>
+	</div>
+
+	<div id="featured">
+		<h3>Featured collections</h3>
+		<% @featured_collections.each do |c| %>
+		  <% image_filename = c['identifier_type'] + '_' + c['identifier_value'] %>
+  		<div class="ead-title" style="background-image: url(<%= asset_path "collection_images/#{image_filename}.png" %>)">
+  			<%= collection_list_link(c) %>
+  		</div>
+		<% end %>
+	</div>
+
+	<p>Please contact us at <%= link_to 'mssref@nypl.org', 'mailto:mssref@nypl.org' %> if you have any questions or comments.</p>
+
+</div>

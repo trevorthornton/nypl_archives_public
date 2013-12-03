@@ -1,0 +1,7 @@
+<h1>Edit user</h1>
+
+<%= form_for(@user, :url => {:action => 'update'}, :html => {:id => 'user_edit_form'}) do |f| %>
+
+  <%= render :partial => 'form_fields', :locals => { :f => f } %>
+
+<% end %>

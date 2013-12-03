@@ -1,0 +1,115 @@
+@import "twitter/bootstrap/bootstrap";
+@import "twitter/bootstrap/responsive";
+
+// Set the correct sprite paths
+//@iconSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings.png");
+@iconSpritePath: "../../glyphicons-halflings.png";
+@iconWhiteSpritePath: "../../glyphicons-halflings-white.png";
+
+// Glyphicons
+@import "twitter/bootstrap/sprites.less";
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/customize.html#variables for their names and documentation
+
+@baseFontFamily: "Myriad Pro", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+
+// @gridColumnWidth: 64px;
+
+body {
+  .container {
+    margin-left: @gridGutterWidth;
+  }
+}
+
+.btn {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  text-shadow: none;
+}
+
+.pagination ul,
+.pagination ul > li > span,
+.pagination ul > li > a,
+.pagination ul > li:first-child > span,
+.pagination ul > li:first-child > a,
+.pagination ul > li:last-child > span,
+.pagination ul > li:last-child > a {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+.nav-tabs.nav-stacked > li:first-child > a {
+  -webkit-border-top-right-radius: 0;
+  -moz-border-radius-topright: 0;
+  border-top-right-radius: 0;
+  -webkit-border-top-left-radius: 0;
+  -moz-border-radius-topleft: 0;
+  border-top-left-radius: 0;
+}
+
+.nav-tabs.nav-stacked > li:last-child > a {
+  -webkit-border-bottom-right-radius: 0;
+  -moz-border-radius-bottomright: 0;
+  border-bottom-right-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  -moz-border-radius-bottomleft: 0;
+  border-bottom-left-radius: 0;
+}
+
+input[type="text"] {
+  -webkit-background-origin: none;
+  -webkit-box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px inset;
+  -webkit-transition-duration: 0, 0;
+  background-origin: none;
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px inset;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  transition-duration: 0, 0;
+}
+
+blockquote p {
+  margin-bottom: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+// media declarations
+
+@media (min-width: 981px) {
+  .span3 .nav-tabs.nav-stacked {
+    width: (3 * @gridColumnWidth) + (@gridGutterWidth * 2);
+  }
+}
+
+@media (min-width: 1200px) {
+  .span3 .nav-tabs.nav-stacked {
+    width: (3 * @gridColumnWidth1200) + (@gridGutterWidth1200 * 2);
+  }
+}
+
+
+
+// Responsive fixed for small viewports
+@media (max-width: 767px) {
+  
+  .navbar-fixed-top, .navbar-fixed-bottom, .navbar-static-top {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .navbar-inner {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+}
